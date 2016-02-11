@@ -1,0 +1,2 @@
+# kindleClipingDeal
+kindle阅读中标记会产生一个mycliping.txt文件，每次都一小段一小段复制到诸如印象笔记，为知笔记里。相信技术改变生活，本项目就是帮助自动解析mycliping.txt文本。
