@@ -1,0 +1,6 @@
+<header class="navbar navbar-default"></header>
+<div id="main" ng-controller="main">
+
+</div>
+<footer></footer>
+<!--<div class="process" id="ajax-process"></div>-->
