@@ -9,23 +9,23 @@
 
 <!--右侧主体部分-->
 <div class="main-warp">
-<!--功能按钮部分-->
-  <div class="tool-section">
-    <label>
-        <input type="file" id="file" ng-model="fileReader">
-    </label>
-    <button ng-click="dealBtn()">处理</button>
-</div>
-<!--展示部分-->
+    <!--功能按钮部分-->
+    <div class="tool-section">
+        <label>
+            <input type="file" id="file" ng-model="fileReader">
+        </label>
+        <button ng-click="dealBtn()">处理</button>
+    </div>
+    <!--展示部分-->
     <div class="show">
-    <article class="book-content">
-        <h1 class="book-name">
-            {{params.notes[params.show].bookName}}
-        </h1>
-        <span class="book-author">{{params.notes[params.show].author}}</span>
-        <li ng-repeat="note in params.notes[params.show].fragments">
-            {{note}}
-        </li>
-    </article>
-</div>
+        <article class="book-content">
+            <h1 class="book-name">
+                {{params.notes[params.show].bookName}}
+            </h1>
+            <span class="book-author">{{params.notes[params.show].author}}</span>
+            <li ng-repeat="note in params.notes[params.show].fragments">
+                {{note}}
+            </li>
+        </article>
+    </div>
 </div>

@@ -6,4 +6,4 @@ app.directive("footer",function(){
         restrict:"AE",
         template:""
     }
-})
+});

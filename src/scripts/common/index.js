@@ -1,4 +1,4 @@
-require("angularjs")
+require("angularjs");
 require("libs");
 require("app");
 require("util");

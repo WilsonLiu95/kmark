@@ -11,4 +11,4 @@ app.controller("headerController",["$scope", function ($scope) {
         controller: "headerController"
     }
 
-})
+});

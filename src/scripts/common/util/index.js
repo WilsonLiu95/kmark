@@ -1,1 +1,1 @@
-require("setView")
+require("setView");
