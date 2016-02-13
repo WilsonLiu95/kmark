@@ -2,27 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8dff73c9-7382-4f20-9c3d-b078ed374af7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/prd/scripts/cliping/cliping@b034c3fcadb6c76683747b306705a7dd.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/prd/scripts/common/index@cebfefea4b8bacd64622810459cc24fa.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/prd/styles/cliping/index@53003fb8732046735385f2ab2d114b31.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/prd/styles/common/index@81096950422bf700fbcf78d955c27f40.css" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/scripts/common/UI/html/fileReader.string" afterPath="$PROJECT_DIR$/src/styles/common/main.less" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/logo.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/prd/scripts/cliping/cliping@VERSION.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/prd/scripts/common/index@VERSION.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/prd/styles/cliping/index@VERSION.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/prd/styles/common/index@VERSION.css" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/index.html" afterPath="$PROJECT_DIR$/html/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mock/My Clippings.txt" afterPath="$PROJECT_DIR$/mock/My Clippings.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/cliping/cliping.js" afterPath="$PROJECT_DIR$/src/scripts/cliping/cliping.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/cliping/html/cliping.string" afterPath="$PROJECT_DIR$/src/scripts/cliping/html/cliping.string" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/common/UI/fileReader.js" afterPath="$PROJECT_DIR$/src/scripts/common/UI/fileReader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/common/layOut/footer.js" afterPath="$PROJECT_DIR$/src/scripts/common/layOut/footer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/common/layOut/html/footer.string" afterPath="$PROJECT_DIR$/src/scripts/common/layOut/html/footer.string" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/common/layOut/html/header.string" afterPath="$PROJECT_DIR$/src/scripts/common/layOut/html/header.string" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/common/layOut/index.js" afterPath="$PROJECT_DIR$/src/scripts/common/layOut/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/common/service/txtdealing.js" afterPath="$PROJECT_DIR$/src/scripts/common/service/txtdealing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/cliping/cliping.less" afterPath="$PROJECT_DIR$/src/styles/cliping/cliping.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/cliping/nav.less" afterPath="$PROJECT_DIR$/src/styles/cliping/nav.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/common/footer.less" afterPath="$PROJECT_DIR$/src/styles/common/footer.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/common/header.less" afterPath="$PROJECT_DIR$/src/styles/common/header.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/common/index.css" afterPath="$PROJECT_DIR$/src/styles/common/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ver/scripts/cliping/cliping.js.ver" afterPath="$PROJECT_DIR$/ver/scripts/cliping/cliping.js.ver" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ver/scripts/common/index.js.ver" afterPath="$PROJECT_DIR$/ver/scripts/common/index.js.ver" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ver/styles/cliping/index.css.ver" afterPath="$PROJECT_DIR$/ver/styles/cliping/index.css.ver" />
@@ -51,31 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cliping.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/scripts/cliping/cliping.js">
+      <file leaf-file-name="header.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/scripts/common/layOut/header.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33717278">
-              <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cliping.string" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/scripts/cliping/html/cliping.string">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.46875">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fileReader.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/scripts/common/UI/fileReader.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.47460318">
+              <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -102,7 +68,6 @@
         <option value="$PROJECT_DIR$/src/scripts/common/UI/index.js" />
         <option value="$PROJECT_DIR$/src/scripts/common/UI/html/fileReader.string" />
         <option value="$PROJECT_DIR$/html/index.html" />
-        <option value="$PROJECT_DIR$/src/scripts/common/layOut/html/header.string" />
         <option value="$PROJECT_DIR$/src/scripts/common/layOut/index.js" />
         <option value="$PROJECT_DIR$/src/scripts/common/layOut/footer.js" />
         <option value="$PROJECT_DIR$/src/scripts/common/layOut/html/footer.string" />
@@ -118,6 +83,7 @@
         <option value="$PROJECT_DIR$/src/scripts/cliping/cliping.js" />
         <option value="$PROJECT_DIR$/src/scripts/common/UI/fileReader.js" />
         <option value="$PROJECT_DIR$/src/scripts/cliping/html/cliping.string" />
+        <option value="$PROJECT_DIR$/src/scripts/common/layOut/html/header.string" />
       </list>
     </option>
   </component>
@@ -238,7 +204,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="UI" />
+              <option name="myItemId" value="layOut" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -260,7 +226,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="cliping" />
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layOut" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="html" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kindleClipingDeal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kindleClipingDeal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kindleClipingDeal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kindleClipingDeal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prd" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -302,6 +308,7 @@
       <recent name="http://www.baidu.com" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\WilsonLiu\Desktop\workspace\Extension\kindleClipingDeal\html" />
       <recent name="C:\Users\WilsonLiu\Desktop\workspace\Extension\kindleClipingDeal\src\scripts\common\UI\html" />
     </key>
   </component>
@@ -380,12 +387,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1793249" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -568,22 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/prd/scripts/common/index@VERSION.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/prd/scripts/cliping/cliping@VERSION.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3853403">
-          <caret line="0" column="2016" selection-start-line="0" selection-start-column="2016" selection-end-line="0" selection-end-column="2016" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scripts/common/layOut/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.096335076">
@@ -596,22 +587,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.096335076">
           <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/common/layOut/header.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.313089">
-          <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/common/layOut/html/header.string">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.049837485">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -680,14 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2990249">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/common/footer.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -704,26 +671,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/common/UI/fileReader.js">
+    <entry file="file://$PROJECT_DIR$/dev/scripts/cliping/cliping@dev.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scripts/cliping/html/cliping.string">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.46875">
+        <state vertical-scroll-proportion="0.22426869">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/common/UI/fileReader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5780105">
+          <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scripts/cliping/cliping.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33717278">
-          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.26492146">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/scripts/common/index@dev.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36984128">
+          <caret line="622" column="138" selection-start-line="622" selection-start-column="138" selection-end-line="622" selection-end-column="138" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2990249">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/common/layOut/html/header.string">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.95016253">
+          <caret line="0" column="11765" selection-start-line="0" selection-start-column="11765" selection-end-line="0" selection-end-column="11765" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/common/layOut/header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47460318">
+          <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
           <folding />
         </state>
       </provider>
