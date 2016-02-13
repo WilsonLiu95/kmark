@@ -58,7 +58,8 @@ app.factory("deal", function () {
         cache.notesList = fac.splitPiece(file);
         cache.piecesList = fac.pieceDivide(cache.notesList);
         cache.bookList = fac.uniqueBook(cache.piecesList);
-        return fac.ruleNotes(cache.bookList, cache.piecesList);
+        cache.result = fac.ruleNotes(cache.bookList, cache.piecesList);
+        return cache.result;
     };
     return fac;
 

@@ -1,4 +1,4 @@
 require("header.less");
 require("footer.less");
 require("reset.less");
-
+require("main.less");
