@@ -1,30 +1,33 @@
 <!--左侧展示栏-->
 <nav class="nav-side">
     <ul>
+        <li class="menu-item" ng-click="select(-1)" ng-if="params.notes">显示全部</li>
         <li class="menu-item" ng-repeat="book in params.notes" ng-click="select($index)">
             {{book.bookName}}
         </li>
     </ul>
 </nav>
-
 <!--右侧主体部分-->
 <div class="main-warp">
     <!--功能按钮部分-->
     <div class="tool-section">
-        <label>
-            <input type="file" id="file" ng-model="fileReader">
+        <label class="file-label">选择文件
+            <input type="file" ng-model="filePath" file-reader="result">
         </label>
-        <button ng-click="dealBtn()">处理</button>
+        <span>欢迎使用kindle文字伴侣</span>
     </div>
     <!--展示部分-->
-    <div class="show">
-        <article class="book-content">
-            <h1 class="book-name">
-                {{params.notes[params.show].bookName}}
-            </h1>
-            <span class="book-author">{{params.notes[params.show].author}}</span>
-            <li ng-repeat="note in params.notes[params.show].fragments">
-                {{note}}
+    <div>
+        <article class="book-content" ng-repeat="note in params.notes" ng-if="$index===params.show||params.show===-1">
+            <!--当show为-1时，允许用户显示全部-->
+            <div class="book-header">
+                <h1 class="book-name">
+                    {{note.bookName}}
+                </h1>
+                <span class="book-author">{{note.author}}</span>
+            </div>
+            <li ng-repeat="fragment in note.fragments">
+                {{fragment}}
             </li>
         </article>
     </div>

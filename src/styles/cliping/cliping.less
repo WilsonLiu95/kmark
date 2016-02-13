@@ -6,19 +6,47 @@
   padding-top: 10px;
   display: inline-block;
   .tool-section {
-    height:50px;
+    height: 50px;
     background-color: #78ff23;
-  }
-  .show {
-    padding: 5px;
-    h1 {
-      font-size: 24px;
-      text-align: center;
+    text-align: center;
+    input[type=file] {
+      display: none;
+    }
+    .file-label {
+      float: left;
+      margin-left: 20px;
+      height: 30px;
+      width: 60px;
+      line-height: 30px;
+      margin-top: 10px;
+      color: #fff;
+      font-weight: bold;
+      background-color: #4d90fe;
+      border: 1px solid #3079ed;
+      border-radius: 3px;
+      &:hover {
+        box-shadow: inset 0 1px 20px rgba(0,0,0,0.1);
+        background-color: #357ae8;
+        border: 1px solid #2f5bb7;
+      }
+    }
+    span{
+      font-size: 20px;
+      line-height: 50px;
+      height: 50px;
     }
   }
+  .book-header {
+    text-align: center;
+    span {
+      font-size: 16px;
+    }
+  }
+  h1 {
+    font-size: 24px;
+  }
   .book-content {
-    background-color: #f6f6f6;
-
+    padding: 10px;
   }
 }
 
