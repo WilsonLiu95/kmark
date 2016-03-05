@@ -10,7 +10,7 @@ app.controller("main", ["$scope", "deal", function ($scope, deal) {
             $scope.params.notes = deal.pipeline($scope.result);
             console.log($scope);
             if (!$scope.params.notes[0]){
-                alert("请检查您选取的文件是否符合kindle标记的标准格式")
+                alert("请检查您选取的文件是否符合kindle标记的标准格式");
             }
         }
     });
@@ -18,5 +18,3 @@ app.controller("main", ["$scope", "deal", function ($scope, deal) {
         $scope.params.show = index;
     };
 }]);
-
-
