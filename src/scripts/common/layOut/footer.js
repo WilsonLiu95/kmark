@@ -7,5 +7,5 @@ app.directive("footer",function(){
     return {
         restrict:"AE",
         template:html
-    }
+    };
 });

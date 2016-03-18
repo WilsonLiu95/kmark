@@ -13,7 +13,7 @@
     <div class="tool-section">
         <label class="file-label">选择文件
             <input type="file" ng-model="filePath" file-reader="result">
-        </label>
+        </labelkit
         <span>欢迎使用kindle标记伴侣</span>
     </div>
     <!--展示部分-->
