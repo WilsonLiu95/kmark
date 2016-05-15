@@ -16,11 +16,14 @@ app.factory("deal", function () {
         var notes = [];
         for (var i = 0, len = pieceArray.length - 1; i < len; i++) {  //split这个函数会切多出来一个，所以要减一
             var cache = pieceArray[i].match(pieceDivide);
-            notes[i] = {
+            if (cache) { //修复 验证
+              notes[i] = {
                 bookName: cache[1],
                 author: cache[2],
                 fragment: cache[4]
-            };
+              };
+
+            }
         }
         return notes;
     };
@@ -43,12 +46,15 @@ app.factory("deal", function () {
             };
             ruleNotes[i].bookName = bookList[i];  //制造新的规则数组
             for (var j = 0, len = notes.length; j < len; j++) {
+              if (notes[j]) { //检验 
                 if (ruleNotes[i].bookName === notes[j].bookName) {
-                    if (!ruleNotes[i].author) {
-                        ruleNotes[i].author = notes[j].author;
-                    }
-                    ruleNotes[i].fragments.push(notes[j].fragment);
+                  if (!ruleNotes[i].author) {
+                    ruleNotes[i].author = notes[j].author;
+                  }
+                  ruleNotes[i].fragments.push(notes[j].fragment);
                 }
+
+              }
             }
         }
         return ruleNotes;
