@@ -15,7 +15,7 @@ app.factory("deal", function () {
         var pieceDivide = /^(.*) \((.*)\).*(?:\s+)(.*)(?:\s+)(.*)/m; //将每一块细分为书名，作者，内容
         var notes = [];
         for (var i = 0, len = pieceArray.length - 1; i < len; i++) {  //split这个函数会切多出来一个，所以要减一
-            var cache = pieceArray[i].match(pieceDivide);
+            var cache c= pieceArray[i].match(pieceDivide);
             if (cache) { //修复 验证
               notes[i] = {
                 bookName: cache[1],
@@ -46,7 +46,7 @@ app.factory("deal", function () {
             };
             ruleNotes[i].bookName = bookList[i];  //制造新的规则数组
             for (var j = 0, len = notes.length; j < len; j++) {
-              if (notes[j]) { //检验 
+              if (notes[j]) { //检验
                 if (ruleNotes[i].bookName === notes[j].bookName) {
                   if (!ruleNotes[i].author) {
                     ruleNotes[i].author = notes[j].author;
