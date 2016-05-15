@@ -435,7 +435,7 @@ angular.setView = function(html) {
 
 ;(function(__context){
     var module = {
-        id : "de27fdfa34932c88b83f863c4219972c" ,
+        id : "6c831bea25657f9918c8358a91106765" ,
         filename : "txtdealing.js" ,
         exports : {}
     };
@@ -459,12 +459,15 @@ app.factory("deal", function () {
         var pieceDivide = /^(.*) \((.*)\).*(?:\s+)(.*)(?:\s+)(.*)/m; //将每一块细分为书名，作者，内容
         var notes = [];
         for (var i = 0, len = pieceArray.length - 1; i < len; i++) {  //split这个函数会切多出来一个，所以要减一
-            var cache = pieceArray[i].match(pieceDivide);
-            notes[i] = {
+            var cache c= pieceArray[i].match(pieceDivide);
+            if (cache) { //修复 验证
+              notes[i] = {
                 bookName: cache[1],
                 author: cache[2],
                 fragment: cache[4]
-            };
+              };
+
+            }
         }
         return notes;
     };
@@ -487,12 +490,15 @@ app.factory("deal", function () {
             };
             ruleNotes[i].bookName = bookList[i];  //制造新的规则数组
             for (var j = 0, len = notes.length; j < len; j++) {
+              if (notes[j]) { //检验
                 if (ruleNotes[i].bookName === notes[j].bookName) {
-                    if (!ruleNotes[i].author) {
-                        ruleNotes[i].author = notes[j].author;
-                    }
-                    ruleNotes[i].fragments.push(notes[j].fragment);
+                  if (!ruleNotes[i].author) {
+                    ruleNotes[i].author = notes[j].author;
+                  }
+                  ruleNotes[i].fragments.push(notes[j].fragment);
                 }
+
+              }
             }
         }
         return ruleNotes;
@@ -509,8 +515,9 @@ app.factory("deal", function () {
 
 });
 
+
     })( module.exports , module , __context );
-    __context.____MODULES[ "de27fdfa34932c88b83f863c4219972c" ] = module.exports;
+    __context.____MODULES[ "6c831bea25657f9918c8358a91106765" ] = module.exports;
 })(this);
 
 
@@ -526,7 +533,7 @@ app.factory("deal", function () {
     /**
  * Created by WilsonLiu on 2016/2/11.
  */
-__context.____MODULES['de27fdfa34932c88b83f863c4219972c']
+__context.____MODULES['6c831bea25657f9918c8358a91106765']
 
     })( module.exports , module , __context );
     __context.____MODULES[ "d8f6537992ceb2ba7e486f82a136fb59" ] = module.exports;
@@ -677,7 +684,7 @@ if (typeof module !== "undefined") module.exports = window.QTMPL["footer"];
 
 ;(function(__context){
     var module = {
-        id : "9788beb8eb933c1e7a32444ea54266d2" ,
+        id : "62b1535e65a81b83b2ef810546a06b88" ,
         filename : "footer.js" ,
         exports : {}
     };
@@ -693,11 +700,12 @@ app.directive("footer",function(){
     return {
         restrict:"AE",
         template:html
-    }
+    };
 });
 
+
     })( module.exports , module , __context );
-    __context.____MODULES[ "9788beb8eb933c1e7a32444ea54266d2" ] = module.exports;
+    __context.____MODULES[ "62b1535e65a81b83b2ef810546a06b88" ] = module.exports;
 })(this);
 
 
@@ -713,7 +721,7 @@ app.directive("footer",function(){
     var html = __context.____MODULES['eddc2ca85fa1034262bd70ffe831f793'];
 angular.element(document).find("body").addClass("ng-cloak").prepend( html );
 __context.____MODULES['86a4048063899c7415f9bd8c4232b4aa'];
-__context.____MODULES['9788beb8eb933c1e7a32444ea54266d2'];
+__context.____MODULES['62b1535e65a81b83b2ef810546a06b88'];
 
 
     })( module.exports , module , __context );
@@ -723,7 +731,7 @@ __context.____MODULES['9788beb8eb933c1e7a32444ea54266d2'];
 
 ;(function(__context){
     var module = {
-        id : "8f387ed6c59a881b5ef4a92b1c1002a3" ,
+        id : "fc275a75926c40c96387f5588bea1936" ,
         filename : "index.js" ,
         exports : {}
     };
@@ -740,5 +748,5 @@ __context.____MODULES['cf0aecd6bc38448b45837135b86f62cf'];
 
 
     })( module.exports , module , __context );
-    __context.____MODULES[ "8f387ed6c59a881b5ef4a92b1c1002a3" ] = module.exports;
+    __context.____MODULES[ "fc275a75926c40c96387f5588bea1936" ] = module.exports;
 })(this);
