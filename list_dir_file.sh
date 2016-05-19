@@ -84,7 +84,7 @@ function init()
   # html_into_ver配置区
   de_reg_rule="\(.*\)\(http://localhost/kindleClipingDeal/prd/\)\(.*\)\(@VERSION\)\(.*\)\".*"
   de_cur_prefix="http://localhost/kindleClipingDeal" #当前prd前面的路径
-  de_replace_prefix=".." #替换的路径
+  de_replace_prefix="http://wilsonliu.cn/kindleClipingDeal" #替换的路径
   de_ver_file="ver/versions.mapping"  #当前存储版本号码的文件
   walk $de_dir_to_walk $de_walk_file_callback $de_walk_dir_callback
 }
