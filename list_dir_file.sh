@@ -54,14 +54,12 @@ function html_into_ver()
 
     cur_version=`sed -n "s*${cur_link_path}#**p" ${de_ver_file}` #当前文件的版本号
     cur_replace_link=`echo ${cur_link} | sed -n   "s#\(.*\)\(@VERSION\)\(.*\)#\1@${cur_version}\3#p"` #当前替代cur_link的链接
-    sed -i -e "s#${cur_link}#${cur_replace_link}#" ${2} #对当前文件进行VERSION修改
+    sed -i "" "s#${cur_link}#${cur_replace_link}#" ${2} #对当前文件进行VERSION修改
 
     # 循环的条件
     i=`expr $i + 1`
-    # cur_link=`echo ${link} | cut -d " " -f $i`
-    # cur_link_path=`echo ${link_path} | cut -d " " -f $i`
   done
-    sed -i -e "s#${de_cur_prefix}#${de_replace_prefix}#g" ${2}  #修改链接的前置部分
+    sed -i "" "s#${de_cur_prefix}#${de_replace_prefix}#g" ${2}  #修改链接的前置部分
 
 }
 
