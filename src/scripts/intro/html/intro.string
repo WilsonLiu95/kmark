@@ -1,0 +1,18 @@
+<!--左侧展示栏-->
+<nav class="nav-side">
+
+</nav>
+<!--右侧主体部分-->
+<div class="main-warp">
+    <!--功能按钮部分-->
+    <div class="tool-section">
+        <span>kindle标记伴侣使用说明</span>
+    </div>
+    <!--展示部分-->
+    <div>
+      <article class="intro">
+        <div>使用kindle阅读的过程中，我们可以标记一些文字，这些文字会保存在cliping.txt的文件中，使用USB连接kindle，然后就点击选取文件按钮，就会直接将文件内容解析出来。</div>
+        <div>这时候就可以按不同的书将其划分然后复制到印象笔记中去,希望你能够喜欢这个小工具。</div>
+      </article>
+    </div>
+</div>

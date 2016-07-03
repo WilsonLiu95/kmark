@@ -8,12 +8,12 @@
     </ul>
 </nav>
 <!--右侧主体部分-->
-<div class="main-warp"''>
+<div class="main-warp">
     <!--功能按钮部分-->
     <div class="tool-section">
-        <label class="file-label">选择文件
+        <label class="file-label" title="选取kindle中的cliping.txt文件">选择文件
             <input type="file" ng-model="filePath" file-reader="result">
-        </labelkit
+        </label>
         <span>欢迎使用kindle标记伴侣</span>
     </div>
     <!--展示部分-->
@@ -26,7 +26,7 @@
                 </h1>
                 <span class="book-author">{{note.author}}</span>
             </div>
-            <li ng-repeat="fragment in note.fragments track by $index">
+            <li class = 'test' ng-repeat="fragment in note.fragments track by $index">
                 {{fragment}}
             </li>
         </article>
