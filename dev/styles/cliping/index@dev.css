@@ -65,6 +65,9 @@
   background-color: #fff;
   overflow-y: hidden;
 }
+.nav-side li:hover {
+  background-color: #ccc;
+}
 
 
 

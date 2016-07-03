@@ -10,3 +10,4 @@
 .main-warp .book-content{padding:10px}
 .nav-side{position:relative;top:10px;width:15%;float:left;background-color:#eee;font-size:18px;line-height:35px}
 .nav-side li{height:35px;margin:5px;border-radius:5px;list-style:none;background-color:#fff;overflow-y:hidden}
+.nav-side li:hover{background-color:#ccc}

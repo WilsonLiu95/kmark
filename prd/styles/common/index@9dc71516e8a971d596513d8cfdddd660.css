@@ -1,6 +1,8 @@
 @charset "utf-8";header{background-color:#368ee0}
 header img{margin-left:15%;width:60px;height:60px}
 header span{font-size:24px}
+header ul{float:right;font-size:16px;margin-top:20px;margin-right:100px}
+header li{display:inline-block}
 footer{height:44px;text-align:center;font-size:14px;clear:both;border-top:1px solid #ccc}
 footer a{color:#000}
 html{background-color:#fff;color:#000;font-size:12px}
