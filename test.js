@@ -1,0 +1,1 @@
+php artisan make:migration create_schedule_table --create=schedule
