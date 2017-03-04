@@ -14,7 +14,7 @@
         <label class="file-label" title="选取kindle中的cliping.txt文件">选择文件
             <input type="file" ng-model="filePath" file-reader="result">
         </label>
-        <span>欢迎使用kindle标记伴侣</span>
+        <span> Kmark用户群：614462732 <a href="https://jq.qq.com/?_wv=1027&k=45bhlfa">点我加群  </span>
     </div>
     <!--展示部分-->
     <div>

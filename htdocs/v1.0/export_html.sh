@@ -58,7 +58,7 @@ function init()
   # html_into_ver配置区
   de_reg_rule="\(.*\)\(http://localhost/kindleClipingDeal/prd/\)\(.*\)\(@VERSION\)\(.*\)\".*"
   de_cur_prefix="http://localhost/kindleClipingDeal" #当前prd前面的路径
-  de_replace_prefix="http://wilsonliu.cn/kindleClipingDeal" #替换的路径
+  de_replace_prefix="http://dev.wilsonliu.cn/kmark/htdocs/v1.0/" #替换的路径
   de_ver_file="ver/versions.mapping"  #当前存储版本号码的文件
 
   de_target_dir="export_html" #将html修改后，输出的目标文件夹
