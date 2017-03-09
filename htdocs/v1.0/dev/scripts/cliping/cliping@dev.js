@@ -1,7 +1,7 @@
 
 ;(function(__context){
     var module = {
-        id : "45a4668925ead89a5d3582943ee330c0" ,
+        id : "4a7c5833baeaaf85c32829c06446720b" ,
         filename : "cliping.string" ,
         exports : {}
     };
@@ -9,11 +9,11 @@
     var r = (function( exports , module , global ){
 
     if (typeof window.QTMPL === "undefined") window.QTMPL = {};
-window.QTMPL["cliping"] = "<!--左侧展示栏-->\n<nav class=\"nav-side\">\n    <ul>\n        <li class=\"menu-item\" ng-click=\"select(-1)\" ng-if=\"params.notes\">显示全部</li>\n        <li class=\"menu-item\" ng-repeat=\"book in params.notes\" ng-click=\"select($index)\">\n            {{book.bookName}}\n        </li>\n    </ul>\n</nav>\n<!--右侧主体部分-->\n<div class=\"main-warp\">\n    <!--功能按钮部分-->\n    <div class=\"tool-section\">\n        <label class=\"file-label\" title=\"选取kindle中的cliping.txt文件\">选择文件\n            <input type=\"file\" ng-model=\"filePath\" file-reader=\"result\">\n        </label>\n        <span>欢迎使用kindle标记伴侣</span>\n    </div>\n    <!--展示部分-->\n    <div>\n        <article class=\"book-content\" ng-repeat=\"note in params.notes\" ng-if=\"$index===params.show||params.show===-1\">\n            <!--当show为-1时，允许用户显示全部-->\n            <div class=\"book-header\">\n                <h1 class=\"book-name\">\n                    {{note.bookName}}\n                </h1>\n                <span class=\"book-author\">{{note.author}}</span>\n            </div>\n            <li class = 'test' ng-repeat=\"fragment in note.fragments track by $index\">\n                {{fragment}}\n            </li>\n        </article>\n    </div>\n</div>\n";
+window.QTMPL["cliping"] = "<!--左侧展示栏-->\n<nav class=\"nav-side\">\n    <ul>\n        <li class=\"menu-item\" ng-click=\"select(-1)\" ng-if=\"params.notes\">显示全部</li>\n        <li class=\"menu-item\" ng-repeat=\"book in params.notes\" ng-click=\"select($index)\">\n            {{book.bookName}}\n        </li>\n    </ul>\n</nav>\n<!--右侧主体部分-->\n<div class=\"main-warp\">\n    <!--功能按钮部分-->\n    <div class=\"tool-section\">\n        <label class=\"file-label\" title=\"选取kindle中的cliping.txt文件\">选择文件\n            <input type=\"file\" ng-model=\"filePath\" file-reader=\"result\">\n        </label>\n        <span> Kmark用户群：614462732   </span>\n    </div>\n    <!--展示部分-->\n    <div>\n        <article class=\"book-content\" ng-repeat=\"note in params.notes\" ng-if=\"$index===params.show||params.show===-1\">\n            <!--当show为-1时，允许用户显示全部-->\n            <div class=\"book-header\">\n                <h1 class=\"book-name\">\n                    {{note.bookName}}\n                </h1>\n                <span class=\"book-author\">{{note.author}}</span>\n            </div>\n            <li class = 'test' ng-repeat=\"fragment in note.fragments track by $index\">\n                {{fragment}}\n            </li>\n        </article>\n    </div>\n</div>\n";
 if (typeof module !== "undefined") module.exports = window.QTMPL["cliping"];
 
     })( module.exports , module , __context );
-    __context.____MODULES[ "45a4668925ead89a5d3582943ee330c0" ] = module.exports;
+    __context.____MODULES[ "4a7c5833baeaaf85c32829c06446720b" ] = module.exports;
 })(this);
 
 
@@ -26,7 +26,7 @@ if (typeof module !== "undefined") module.exports = window.QTMPL["cliping"];
     if( !__context.____MODULES ) { __context.____MODULES = {}; }
     var r = (function( exports , module , global ){
 
-    var html = __context.____MODULES['45a4668925ead89a5d3582943ee330c0'];
+    var html = __context.____MODULES['4a7c5833baeaaf85c32829c06446720b'];
 angular.setView(html);
 app.controller("main", ["$scope", "deal", function ($scope, deal) {
     $scope.params = {
