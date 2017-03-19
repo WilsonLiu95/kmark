@@ -17,7 +17,7 @@
       <el-menu-item index="static"
                     class="menu-static iconfont icon-static">统计</el-menu-item>
   
-      <el-menu-item index="index"
+      <el-menu-item index="home"
                     class="menu-index iconfont icon-home">首页</el-menu-item>
     </el-menu>
     <div class='main-body'>
@@ -76,16 +76,16 @@ body {
 }
 
 .kmark-logo {
-  margin: 0px 0 0 156px;
+  margin: -10px 0 0 156px;
   width: 150px;
   height: 120px;
 }
-
 
 /*导航栏设置*/
 
 .el-menu {
   height: 28px;
+  background-color: #E6E6E6;
   padding: 38px 0 26px 0;
 }
 
@@ -103,11 +103,11 @@ body {
 
 .main-body {
   margin: 66px 0 0 0;
-  min-height: 700px;
+  min-height: 500px;
 }
 
 .main-body .breadcrumb {
-  background-color: #eef1f6;
+  background-color: #E3E2E2;
   height: 59px;
   font-size: 24px;
   border-radius: 10px;
@@ -119,13 +119,15 @@ body {
 }
 
 .breadcrumb .breadcrumb-kmark {
-  margin-left: -125px;
+  margin-left: 179px;
   font-size: 24px;
 }
-
+.el-menu--horizontal .el-menu-item:hover{
+  background-color: #E6E6E6;
+}
 .main-content {
   height: 600px;
   min-height: 500px;
-  background-color: #eef1f6;
+  background-color: #F4F4F4;
 }
 </style>
