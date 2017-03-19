@@ -28,13 +28,13 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    httpUrl: '/wechat/',
+    httpUrl: '/api/',
     proxyTable: {
-      '/wechat': {
+      '/api': {
         target: 'http://dev.wilsonliu.cn:8000',
         changeOrigin: true,
         pathRewrite: {
-          '^/wechat': '/wechat'
+          '^/api': '/api'
         }
       }
     },
