@@ -14,7 +14,8 @@ class CreateBookTable extends Migration
     {
         Schema::create('book', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('user_id')->comment('记录第一个创建该本书的用户');
+            $table->string('title');
             $table->string('author');
             $table->softDeletes();
             $table->timestamps();

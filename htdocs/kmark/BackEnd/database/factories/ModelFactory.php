@@ -11,11 +11,42 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Model\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
+
+    ];
+});
+
+$factory->define(App\Model\Book::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => $faker->numberBetween(1,20),
+        'title' => $faker->title,
+        'author' => $faker->name,
+
+    ];
+});
+$factory->define(App\Model\Upload::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => $faker->numberBetween(1,20),
+        'path' => $faker->url,
+        'upload_time'=> $faker->numberBetween(1,3),
+        'date' => $faker->date(),
+    ];
+});
+$factory->define(App\Model\Mark::class, function (Faker\Generator $faker) {
+    $mock_text = $faker->text(200);
+    return [
+        'user_id' => $faker->numberBetween(1,20),
+        'upload_id'=>$faker->numberBetween(1,60),
+        'book_id'=>$faker->numberBetween(1,80),
+        'upload_time' => $faker->numberBetween(1,3),
+        'length' => strlen($mock_text),
+        'content' => $mock_text,
+        'start_position' => $faker->numberBetween(1,1000) * 100,
+        'mark_time'=>$faker->dateTime,
+
     ];
 });
