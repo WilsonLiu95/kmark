@@ -45,7 +45,7 @@
           <el-upload drag
                      v-if="!notes.length"
                      class="upload-file"
-                     :action="prefix+ '/home/upload'"
+                     :action="prefix+ 'home/upload'"
                      :headers="{'X-XSRF-TOKEN':token}"
                      name='mycliping'
                      :before-upload="init"
@@ -92,6 +92,7 @@ export default {
   },
   created() {
     this.prefix = this.$http.defaults.baseURL
+    this.$http.get('home/test')
     this.clipboard()
   },
   methods: {

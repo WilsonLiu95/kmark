@@ -24,6 +24,6 @@ class Home extends Controller
 
     }
     public function getTest(){
-        return $this->json(Session::all());
+        return '生效';
     }
 }

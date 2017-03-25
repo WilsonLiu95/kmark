@@ -12,7 +12,13 @@ class CreateBookTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('book', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('author');
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +28,6 @@ class CreateBookTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('book');
     }
 }
