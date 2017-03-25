@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix'=>'api'], function(){
+Route::group(['prefix'=>'kmark'], function(){
     Route::controller("/home","Home");
 });
 

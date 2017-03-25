@@ -45,7 +45,7 @@
           <el-upload drag
                      v-if="!notes.length"
                      class="upload-file"
-                     action="//dev.wilsonliu.cn:8080/api/home/upload"
+                     :action="prefix+ '/home/upload'"
                      :headers="{'X-XSRF-TOKEN':token}"
                      name='mycliping'
                      :before-upload="init"
@@ -82,6 +82,7 @@ export default {
   data() {
     return {
       token: window.util.cookie.get('XSRF-TOKEN'),
+      prefix: '', // 请求前缀
       fileList: [],
       txt: txt,
       currentBook: 0,
@@ -90,6 +91,7 @@ export default {
     }
   },
   created() {
+    this.prefix = this.$http.defaults.baseURL
     this.clipboard()
   },
   methods: {

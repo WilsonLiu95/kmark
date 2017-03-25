@@ -8,7 +8,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
-    httpUrl: 'http://select-course.wilsonliu.cn/BackEnd/public/index.php/wechat/',
+    httpUrl: 'http://kmark.wilsonliu.cn/kmark/BackEnd/public/index.php/kmark/',
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
@@ -28,13 +28,13 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    httpUrl: '/api/',
+    httpUrl: '/kmark/',
     proxyTable: {
-      '/api': {
+      '/kmark': {
         target: 'http://dev.wilsonliu.cn:8000',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/api'
+          '^/kmark': '/kmark'
         }
       }
     },
