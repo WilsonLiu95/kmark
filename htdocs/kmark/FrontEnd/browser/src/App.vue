@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <el-menu default-active="index"
-             class="el-menu-demo"
              mode="horizontal"
+             class="nav-menu"
              :router="true"
              @select="handleSelect">
       <li class='kmark-logo-wrapper'>
@@ -20,16 +20,19 @@
       <el-menu-item index="home"
                     class="menu-index iconfont icon-home">首页</el-menu-item>
     </el-menu>
-    <div class='main-body'>
-      <el-breadcrumb class='breadcrumb'
-                     separator="<">
-        <el-breadcrumb-item class="iconfont icon-home breadcrumb-kmark"> Kmark</el-breadcrumb-item>
-        <el-breadcrumb-item>{{$route.matched[0].meta}}</el-breadcrumb-item>
-      </el-breadcrumb>
+  
+    <el-card class="box-card main-body">
+      <div slot="header"
+           class="clearfix breadcrumb-header">
+        <el-breadcrumb separator=">">
+          <el-breadcrumb-item class="iconfont icon-home breadcrumb-kmark">Kmark</el-breadcrumb-item>
+          <el-breadcrumb-item>{{$route.matched[0].meta}}</el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
       <router-view class="main-content">
   
       </router-view>
-    </div>
+    </el-card>
   
   </div>
 </template>
@@ -62,12 +65,32 @@ body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+}
+
+
+/*面包屑的背景色*/
+
+.main-body>.el-card__header {
+  background-color: #E3E2E2;
+}
+
+.nav-menu .el-menu-item.is-active {
+  color: #D7000E;
+}
+
+
+/*红色当前页*/
+
+#app .el-breadcrumb__item:last-child span {
+  color: #CF1F16;
 }
 </style>
 <style scoped>
 @import 'assets/fonts/iconfont.css';
+
+
+
 
 /*logo设置*/
 
@@ -77,57 +100,67 @@ body {
 
 .kmark-logo {
   margin: -10px 0 0 156px;
-  width: 150px;
-  height: 120px;
+  width: 130px;
+  height: 100px;
 }
+
+
+
+
 
 /*导航栏设置*/
 
 .el-menu {
   height: 28px;
   background-color: #E6E6E6;
-  padding: 38px 0 26px 0;
+  padding: 28px 0 16px 0;
 }
 
 #app .el-menu-item {
   margin-top: -20px;
-  font-size: 28px;
+  font-size: 18px;
   float: right;
 }
 
-#app .menu-about  {
+
+
+
+
+/*menu hover后的颜色*/
+
+.el-menu--horizontal .el-menu-item:hover {
+  background-color: #E6E6E6;
+  color: #CF1F16;
+}
+
+#app .menu-about {
   margin-right: 100px;
 }
+
+
+
+
+
+/* 面包屑 */
+
+.main-body .breadcrumb-header span {
+  font-size: 20px;
+}
+
+.breadcrumb-header .breadcrumb-kmark {
+  margin-left: 179px;
+}
+
+
 
 /*主体部分*/
 
 .main-body {
   margin: 66px 0 0 0;
-  min-height: 500px;
 }
 
-.main-body .breadcrumb {
-  background-color: #E3E2E2;
-  height: 59px;
-  font-size: 24px;
-  border-radius: 10px;
-  margin-bottom: 2px;
-}
-
-.main-body .breadcrumb span {
-  margin-top: 16px;
-}
-
-.breadcrumb .breadcrumb-kmark {
-  margin-left: 179px;
-  font-size: 24px;
-}
-.el-menu--horizontal .el-menu-item:hover{
-  background-color: #E6E6E6;
-}
 .main-content {
-  height: 600px;
-  min-height: 500px;
+  min-height: 600px;
   background-color: #F4F4F4;
 }
 </style>
