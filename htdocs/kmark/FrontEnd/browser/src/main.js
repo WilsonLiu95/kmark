@@ -24,7 +24,7 @@ Vue.use(ElementUI)
 var loading
   // Add a request interceptor
 axios.interceptors.request.use((config) => {
-  if (!config.noIndicator) {
+  if (!config.noLoading) {
     loading = Loading.service({
       fullscreen: true,
       text: '请求中...'
@@ -41,12 +41,19 @@ axios.interceptors.request.use((config) => {
 
 axios.interceptors.response.use((response) => {
   // 关闭弹窗
-  if (!response.config.noIndicator) {
+  if (!response.config.noLoading) {
     loading.close()
+  }
+  if (response.data.msg) {
+    Message({
+      message: response.data.msg,
+      duration: 1500,
+      type: 'success'
+    })
   }
   return response
 }, (error) => {
-  if (!error.response.config.noIndicator) {
+  if (!error.response.config.noLoading) {
     loading.close()
   }
   var res = error.response

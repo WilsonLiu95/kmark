@@ -3,7 +3,7 @@
     <el-row :gutter="24">
       <el-col :span="5">
         <el-card class="left-nav box-card">
-          <el-input placeholder="请输入"
+          <el-input placeholder="可输入单个关键词搜索标记"
                     class="search"
                     icon="search"
                     v-model="search"
@@ -26,9 +26,13 @@
           <div slot="header"
                style="height:22px;font-size:18px;text-align:center;"
                class="clearfix box-card-header">
-            <span style="float:left">
-                            <a style="text-decoration:none;color:#000" href="https://jq.qq.com/?_wv=1027&amp;k=45bhlfa">Kmark</a>
-                          </span>
+            <span style="float:left"
+                  v-if='user.name'>
+                                            <!--<a style="text-decoration:none;color:#000" href="https://jq.qq.com/?_wv=1027&amp;k=45bhlfa">
+                                            Kmark
+                                            </a>-->
+                                            {{user.name + ', 你好'}}
+                                          </span>
             <span v-if="currentBook"
                   style="font-size:20px;">{{currentBook}}</span>
             <span v-if="showBookObj[currentBook]"
@@ -49,7 +53,7 @@
                      :action="prefix+ 'home/upload'"
                      :headers="{'X-XSRF-TOKEN':token}"
                      name='mycliping'
-                     :before-upload="init"
+                     :before-upload="readerMark"
                      accept='.txt'>
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">
@@ -70,8 +74,38 @@
         </el-card>
   
       </el-col>
-  
+      <el-dialog title="开始使用 kmark"
+                 v-model="dialogVisible"
+                 size="tiny">
+        <el-form ref="userForm"
+                 :rules="ruleUser"
+                 :model="user"
+                 label-width="120px">
+          <el-form-item label="用户名"
+                        prop="name">
+            <el-input v-model="user.name"
+                      placeholder="请输入用户名"></el-input>
+          </el-form-item>
+          <el-form-item label="邮箱"
+                        prop="email">
+            <el-input v-model="user.email"
+                      placeholder="请输入邮箱"></el-input>
+          </el-form-item>
+          <el-form-item label="用户类型">
+            <el-radio-group v-model="isNewUser">
+              <el-radio :label="true">新用户</el-radio>
+              <el-radio :label="false">老用户</el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </el-form>
+        <span slot="footer"
+              class="dialog-footer">
+                                            <el-button @click="dialogVisible = false">取 消</el-button>
+                                            <el-button type="primary" @click="login">确 定</el-button>
+                                          </span>
+      </el-dialog>
     </el-row>
+  
   </el-card>
 </template>
 
@@ -82,15 +116,31 @@ export default {
   data() {
     return {
       token: window.util.cookie.get('XSRF-TOKEN'),
+      isNewUser: false,
+      user: {
+        name: '',
+        email: ''
+      },
+      ruleUser: {
+        name: [
+          { required: true, message: '请输入活动名称', trigger: 'blur' },
+          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }],
+        email: [
+          { required: true, message: '请输入邮箱', trigger: 'change' },
+          { type: 'email', message: '请输入邮箱', trigger: 'change' }
+
+        ]
+      },
       prefix: '', // 请求前缀
       currentBook: '', // 当前是哪本书
       search: '',
+      dialogVisible: false,
       notes: [] // 所有标记
     }
   },
   created() {
     this.prefix = this.$http.defaults.baseURL
-    this.$http.get('home/test')
+    this.isLogin()
     this.clipboard()
   },
   computed: {
@@ -116,15 +166,33 @@ export default {
         cache[item.title].push(item)
       })
       return cache
+    },
+    uniqueBook() {
+      var cache = {}
+      var bookArr = []
+      this.notes.forEach((item, index) => {
+        if (cache[item.title] !== true) {
+          // 该书不存在
+          cache[item.title] = true
+          bookArr.push({
+            title: item.title,
+            author: item.author
+          })
+        }
+      })
+      return bookArr
     }
   },
   methods: {
-    init(file) {
+    readerMark(file) {
       var reader = new FileReader()
       reader.readAsText(file)
       reader.onload = () => {
         if (reader.result) {
           this.notes = this.cliping(reader.result)
+          setTimeout(() => {
+            this.postNote()
+          }, 1000) // 读取成功后，将内容发送给后端
         } else {
           this.$message({
             showClose: true,
@@ -140,6 +208,38 @@ export default {
           message: '读取文件失败，当前浏览器或不支持文件读取功能，请尝试使用Chrome，QQ浏览器。'
         })
       }
+    },
+    isLogin() {
+      this.$http.get('home/is-login', {
+        noLoading: true
+      }).then(res => {
+        if (res.data.isLogin) { // 注册过
+          this.user.name = res.data.name
+        } else {
+          this.dialogVisible = true
+        }
+      })
+    },
+    login() {
+      this.$refs['userForm'].validate(isValidate => {
+        if (isValidate) {
+          this.$http.post('home/login?isNewUser=' + this.isNewUser, this.user).then(res => {
+            this.dialogVisible = false
+          })
+        } else {
+          this.$message({
+            showClose: true,
+            type: 'error',
+            message: '数据有误，请先校对'
+          })
+        }
+      })
+    },
+    postNote() {
+      this.$http.post('home/upload-note', {
+        notes: this.notes,
+        book: this.uniqueBook
+      }, { noLoading: true })
     },
     clipboard() {
       var clipboard = new Clipboard('.clipboard-btn')
@@ -174,7 +274,8 @@ export default {
         return {
           title: cache[1],
           author: cache[2],
-          start_postion: Math.floor(cache[3] / 100) * 100, // 默认一个标记单位为100相同则为同一条标记
+          start_position: Math.floor(cache[3] / 100) * 100, // 默认一个标记单位为100相同则为同一条标记
+          length: cache[5].length,
           mark_time: markTime, // 标记本段内容的时间
           content: cache[5]
         }
@@ -195,6 +296,7 @@ export default {
 
 .home-body {
   min-height: 500px;
+  background-color: #EAEAEA;
 }
 
 
@@ -205,6 +307,7 @@ export default {
 .upload-file .el-upload .el-upload-dragger {
   width: 100%;
   padding: 80px 0 0 0;
+  background-color: #EAEAEA;
   min-height: 400px;
 }
 
@@ -231,41 +334,6 @@ export default {
   color: #D7000E
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*.search {
-  display: block;
-  margin: 10px auto;
-  width: 200px;
-}*/
 
 .clipboard-btn {
   background-color: #D7000E;

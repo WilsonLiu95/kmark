@@ -10,9 +10,9 @@ class CreateUserTable extends Migration
 
         Schema::create('user', function (Blueprint $table) {
             $table->increments('id');
+            $table->uuid('uuid');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password', 60)->comment('暂时不用');
             $table->softDeletes();
             $table->timestamps();
         });

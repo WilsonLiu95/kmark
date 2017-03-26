@@ -14,6 +14,7 @@ class User extends Model
     {
         return $this->hasMany('App\Model\Upload');
     }
+
     public function mark()
     {
         return $this->hasMany('App\Model\Mark');
