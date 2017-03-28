@@ -90,11 +90,11 @@
         <el-form ref="userForm"
                  :rules="ruleUser"
                  :model="user"
-                 label-width="120px">
-          <el-form-item label="用户名"
+                 label-width="80px">
+          <el-form-item label="昵称"
                         prop="name">
             <el-input v-model="user.name"
-                      placeholder="请输入用户名"></el-input>
+                      placeholder="给自己取个昵称吧~"></el-input>
           </el-form-item>
           <el-form-item label="邮箱"
                         prop="email">
@@ -106,6 +106,10 @@
               <el-radio :label="true">新用户</el-radio>
               <el-radio :label="false">老用户</el-radio>
             </el-radio-group>
+          </el-form-item>
+          <el-form-item label="提示：">
+          <span>登录Kmark后，将为您提供数据记录与统计服务</span>
+          <p>选择新用户将视为注册，选择老用户将视为登录</p>
           </el-form-item>
         </el-form>
         <span slot="footer"
