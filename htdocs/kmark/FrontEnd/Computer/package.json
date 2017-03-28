@@ -17,12 +17,11 @@
     "postinstall": "npm run lint:fix && cd app && npm install"
   },
   "build": {
-    "productName": "ElectronVue",
+    "productName": "kmark",
     "appId": "org.simulatedgreg.electron-vue",
     "category": "public.app-category.tools",
     "dmg": {
-      "contents": [
-        {
+      "contents": [{
           "x": 410,
           "y": 150,
           "type": "link",
@@ -41,7 +40,7 @@
       "package.json"
     ],
     "mac": {
-      "icon": "app/icons/icon.icns"
+      "icon": "app/icons/icon"
     },
     "win": {
       "icon": "app/icons/icon.ico"
@@ -109,5 +108,7 @@
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+
+  }
 }

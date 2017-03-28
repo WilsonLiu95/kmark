@@ -27,5 +27,6 @@ module.exports = {
     'eol-last': 0,
     'no-duplicate-imports': 0,
     'no-new': 0,
+    'eol-last': 0
   }
 }

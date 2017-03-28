@@ -95,7 +95,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 // axios.defaults.params = {
 //   XDEBUG_SESSION_START: "PHPSTORM"
 // }
-Vue.prototype.$http = axios
+// Vue.prototype.$http = axios
+window.util.$http = axios
   /* eslint-disable no-new */
 new Vue({
   el: '#app',
