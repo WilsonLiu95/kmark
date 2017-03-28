@@ -21,6 +21,8 @@ class User extends Model
     }
     public function book()
     {
-        return $this->hasMany('App\Model\Book');
+        return $this->belongsToMany('App\Model\Book')
+            ->withTimestamps();
     }
+
 }

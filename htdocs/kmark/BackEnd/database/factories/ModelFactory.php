@@ -20,10 +20,8 @@ $factory->define(App\Model\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Model\Book::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => $faker->numberBetween(1,20),
         'title' => $faker->title,
         'author' => $faker->name,
-
     ];
 });
 $factory->define(App\Model\Upload::class, function (Faker\Generator $faker) {
@@ -32,6 +30,12 @@ $factory->define(App\Model\Upload::class, function (Faker\Generator $faker) {
         'path' => $faker->url,
         'upload_time'=> $faker->numberBetween(1,3),
         'date' => $faker->date(),
+    ];
+});
+$factory->define(App\Model\BookUser::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'=>1,
+        'book_id'=>3
     ];
 });
 $factory->define(App\Model\Mark::class, function (Faker\Generator $faker) {

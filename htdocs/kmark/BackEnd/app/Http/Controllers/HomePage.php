@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use Webpatser\Uuid\Uuid;
 
-class Home extends Controller
+class HomePage extends Controller
 {
     public function postUpload(){
         $id = session()->get('id');
+        if(!$id){
+            return $this->errorMsg('温馨提示:为了更好地享受服务,请您先行注册');
+        }
         $user = User::find($id);
 
         if(request()->hasFile('mycliping')){
@@ -70,9 +73,15 @@ class Home extends Controller
             if(!$db_book){
                $db_book = Book::create([ // 更新书籍
                     'title'=>$book['title'],
-                    'author'=>$book['author'],
-                    'user_id'=>session()->get('id')
+                    'author'=>$book['author']
                 ]);
+            }
+            $isHasReed = User::find($user_id)->book()->where('book.id', $db_book->id)->exists();
+            if(!$isHasReed){
+                User::find($user_id)->book()->attach($db_book->id); // 添加关联
+                Book::find($db_book->id)->update(
+                    ['reader_number'=> $db_book->reader_number + 1]
+                ); // 更新该本书阅读的人数
             }
             $book_map[$book['title']] = $db_book->id;
         }

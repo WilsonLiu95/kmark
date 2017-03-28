@@ -12,6 +12,7 @@
 */
 
 Route::group(['prefix'=>'kmark'], function(){
-    Route::controller("/home","Home");
+    Route::controller("/home","HomePage");
+    Route::controller("/static","StaticPage");
 });
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookTable extends Migration
+class CreateBookUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateBookTable extends Migration
      */
     public function up()
     {
-        Schema::create('book', function (Blueprint $table) {
+        Schema::create('book_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('reader_number')
-                ->comment('阅读过该本书的人数');
-            $table->string('title');
-            $table->string('author');
+            $table->integer('user_id');
+            $table->integer('book_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +28,6 @@ class CreateBookTable extends Migration
      */
     public function down()
     {
-        Schema::drop('book');
+        Schema::drop('book_user');
     }
 }

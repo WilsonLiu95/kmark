@@ -12,10 +12,13 @@ class Book extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Model\User');
+        return $this->belongsToMany('App\Model\User')
+            ->withTimestamps();
     }
     public function mark()
     {
         return $this->hasMany('App\Model\Mark');
     }
+
+
 }

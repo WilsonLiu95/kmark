@@ -20,7 +20,8 @@ window.util = {
 var router = new VueRouter(routerConfig)
 Vue.use(VueRouter)
 Vue.use(ElementUI)
-  // ======================配置HTTP请求===============================
+
+// ======================配置HTTP请求===============================
 var loading
   // Add a request interceptor
 axios.interceptors.request.use((config) => {

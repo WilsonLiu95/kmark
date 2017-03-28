@@ -27,18 +27,26 @@
                style="height:22px;font-size:18px;text-align:center;"
                class="clearfix box-card-header">
             <span style="float:left"
-                  v-if='user.name'>
-                                            <!--<a style="text-decoration:none;color:#000" href="https://jq.qq.com/?_wv=1027&amp;k=45bhlfa">
-                                            Kmark
-                                            </a>-->
-                                            {{user.name + ', 你好'}}
-                                          </span>
+                  v-if='isLogin && user.name'>
+                          {{user.name + ', 你好'}}
+                  </span>
             <span v-if="currentBook"
                   style="font-size:20px;">{{currentBook}}</span>
             <span v-if="showBookObj[currentBook]"
                   style="font-size:12px;">{{showBookObj[currentBook]["0"].author}}</span>
+            <el-tooltip content="为了更好的统计数据，以改进产品，请先行注册"
+                        placement="top"
+                        v-if="!isLogin && !user.name">
+              <el-button style="float:right;margin: -6px 30px 0 0;"
+                         size="large"
+                         @click="dialogVisible=true"
+                         type="primary">
+                注册
+              </el-button>
+            </el-tooltip>
             <el-tooltip content="一键复制标记内容"
-                        placement="top">
+                        placement="top"
+                        v-if="notes.length">
               <el-button class="clipboard-btn el-icon-document"
                          type="danger"
                          size="large"
@@ -53,6 +61,8 @@
                      :action="prefix+ 'home/upload'"
                      :headers="{'X-XSRF-TOKEN':token}"
                      name='mycliping'
+                     :on-success="postNote"
+                     :on-error="uploadError"
                      :before-upload="readerMark"
                      accept='.txt'>
             <i class="el-icon-upload"></i>
@@ -91,7 +101,7 @@
             <el-input v-model="user.email"
                       placeholder="请输入邮箱"></el-input>
           </el-form-item>
-          <el-form-item label="用户类型">
+          <el-form-item label="类型">
             <el-radio-group v-model="isNewUser">
               <el-radio :label="true">新用户</el-radio>
               <el-radio :label="false">老用户</el-radio>
@@ -100,9 +110,9 @@
         </el-form>
         <span slot="footer"
               class="dialog-footer">
-                                            <el-button @click="dialogVisible = false">取 消</el-button>
-                                            <el-button type="primary" @click="login">确 定</el-button>
-                                          </span>
+                      <el-button @click="dialogVisible = false">取 消</el-button>
+                      <el-button type="primary" @click="login">确 定</el-button>
+                    </span>
       </el-dialog>
     </el-row>
   
@@ -117,6 +127,7 @@ export default {
     return {
       token: window.util.cookie.get('XSRF-TOKEN'),
       isNewUser: false,
+      isLogin: true, // 是否登录
       user: {
         name: '',
         email: ''
@@ -140,7 +151,7 @@ export default {
   },
   created() {
     this.prefix = this.$http.defaults.baseURL
-    this.isLogin()
+    this.getIsLogin()
     this.clipboard()
   },
   computed: {
@@ -190,9 +201,6 @@ export default {
       reader.onload = () => {
         if (reader.result) {
           this.notes = this.cliping(reader.result)
-          setTimeout(() => {
-            this.postNote()
-          }, 1000) // 读取成功后，将内容发送给后端
         } else {
           this.$message({
             showClose: true,
@@ -209,16 +217,27 @@ export default {
         })
       }
     },
-    isLogin() {
+    getIsLogin() {
       this.$http.get('home/is-login', {
         noLoading: true
       }).then(res => {
         if (res.data.isLogin) { // 注册过
+          this.isLogin = true
           this.user.name = res.data.name
         } else {
-          this.dialogVisible = true
+          this.isLogin = false
+          this.user.name = null
         }
       })
+    },
+    uploadError(error) {
+      if (error.status === 400) {
+        this.$message({
+          showClose: true,
+          type: 'info',
+          message: '为了更好的统计数据，给大家更好的体验，请先行注册。'
+        })
+      }
     },
     login() {
       this.$refs['userForm'].validate(isValidate => {
@@ -329,8 +348,8 @@ export default {
   color: #D7000E
 }
 
-.el-button:focus,
-.el-button:hover {
+.book-btn-group .el-button:focus,
+.book-btn-group .el-button:hover {
   color: #D7000E
 }
 
