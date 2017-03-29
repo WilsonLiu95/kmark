@@ -14,7 +14,7 @@
   
             <el-button v-for="(book, key) in showBookObj"
                        @click="changeBook(key)"
-                       type='text'
+                       type='button'
                        :key='key'
                        :class='["book-item-btn",currentBook == key?"focus-book" : ""]'
                        :label="key">{{key}}</el-button>
@@ -28,8 +28,8 @@
                class="clearfix box-card-header">
             <span style="float:left"
                   v-if='isLogin && user.name'>
-                          {{user.name + ', 你好'}}
-                  </span>
+                    {{user.name + ', 你好'}}
+            </span>
             <span v-if="currentBook"
                   style="font-size:20px;">{{currentBook}}</span>
             <span v-if="showBookObj[currentBook]"
@@ -75,7 +75,7 @@
   
           <div class="book-frag-list">
             <ul v-if="showBookObj[currentBook]">
-              <li v-for='(mark, index) in showBookObj[currentBook]'>
+              <li  v-for='(mark, index) in showBookObj[currentBook]'>
                 {{mark.content}}
               </li>
             </ul>
@@ -108,15 +108,15 @@
             </el-radio-group>
           </el-form-item>
           <el-form-item label="提示：">
-          <span>登录Kmark后，将为您提供数据记录与统计服务</span>
-          <p>选择新用户将视为注册，选择老用户将视为登录</p>
+            <span>登录Kmark后，将为您提供数据记录与统计服务</span>
+            <p>选择新用户将视为注册，选择老用户将视为登录</p>
           </el-form-item>
         </el-form>
         <span slot="footer"
               class="dialog-footer">
-                      <el-button @click="dialogVisible = false">取 消</el-button>
-                      <el-button type="primary" @click="login">确 定</el-button>
-                    </span>
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="login">确 定</el-button>
+        </span>
       </el-dialog>
     </el-row>
   
@@ -288,20 +288,35 @@ export default {
     },
     cliping(txt) { // 文本解析处理
       var noteArray = txt.split(/==========/g).slice(1, -1) // 根据mycliping的格式先划分成一条条记录，最后一条为空
-      // debugger
       return noteArray.map((item, index) => {
-        // 将每一块细分为书名，作者，起始位置，标记时间，内容 5部分
-        const cache = item.match(/^(.*) \((.*)\).*(?:\s+).*#(.*)-(?:.*)添加于(?:\s+)(.*)(?:\s+)(.*)/m) // ?: 为 消除对应缓存 \s+则为换行
-        // 正则出的日期格式为 2016年2月10日星期三 上午8:59:58 需要进行加工
-        var dateArr = cache[4].match(/^(\d{4})年(\d{1,2})月(\d{1,2})日(?:.*)上午(.*)$/)
-        var markTime = dateArr.slice(1, 4).join('-') + ' ' + dateArr[4]
+        const match = {
+          firstSplit: /^(.*) \((.*)\)(?:\s)-(.*)(?:\s+)(.*)$/m, // 将每一块细分为书名，作者，(起始位置，标记时间)，内容 4部分
+          chinese: /^.*#(\d+)-.*(\d{4})年(\d{1,2})月(\d{1,2})日(?:.*\D)(\d{1,2}:\d{1,2}:\d{1,2})$/,
+          english: /^.*Location\s(\d*)-.*\D,\s(.*)$/
+        }
+
+        // 起始位置与标记时间部分中英文格式不同
+        var cache = item.match(match.firstSplit) // ?: 为 消除对应缓存 \s+则为换行
+        var thirdSection, markTime, date
+        if (cache[3].match(match.chinese)) {
+          thirdSection = cache[3].match(match.chinese)
+          markTime = thirdSection.slice(2, 5).join('-') + ' ' + thirdSection[5]
+        } else if (cache[3].match(match.english)) {
+          thirdSection = cache[3].match(match.english)
+          date = new Date(thirdSection[2])
+          markTime = date.getFullYear + '-' + date.getMonth + '-' + ' ' + date.getHours() + '-' + date.getMinutes + '-' + date.getSeconds() // 拼接时间格式
+        } else {
+          // 默认当前时间
+          date = new Date()
+          markTime = date.getFullYear + '-' + date.getMonth + '-' + ' ' + date.getHours() + '-' + date.getMinutes + '-' + date.getSeconds()
+        }
         return {
           title: cache[1],
           author: cache[2],
-          start_position: Math.floor(cache[3] / 100) * 100, // 默认一个标记单位为100相同则为同一条标记
-          length: cache[5].length,
+          start_position: Math.floor(thirdSection[1] / 100) * 100, // 默认一个标记单位为100相同则为同一条标记
+          length: cache[4].length,
           mark_time: markTime, // 标记本段内容的时间
-          content: cache[5]
+          content: cache[4]
         }
       })
     },
@@ -338,13 +353,12 @@ export default {
 .book-btn-group {
   width: 100%;
   margin: 10px 0 0 0;
-  border-radius: 7px;
-  border: 1px solid #EAEAEA;
 }
 
 .book-item-btn {
   display: block;
-  color: #1F1E1E;
+  margin: 0 0 1px 0;
+  white-space:normal;
   background-color: #EAEAEA;
   width: 100%;
 }
