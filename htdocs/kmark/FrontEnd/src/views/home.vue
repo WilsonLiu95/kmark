@@ -287,14 +287,13 @@ export default {
       this.currentBook = currentBook
     },
     cliping(txt) { // 文本解析处理
-      var noteArray = txt.split(/==========/g).slice(1, -1) // 根据mycliping的格式先划分成一条条记录，最后一条为空
+      var noteArray = txt.split(/==========/g).slice(0, -1) // 根据mycliping的格式先划分成一条条记录，最后一条为空
       return noteArray.map((item, index) => {
         const match = {
           firstSplit: /^(.*) \((.*)\)(?:\s)-(.*)(?:\s+)(.*)$/m, // 将每一块细分为书名，作者，(起始位置，标记时间)，内容 4部分
           chinese: /^.*#(\d+)-.*(\d{4})年(\d{1,2})月(\d{1,2})日(?:.*\D)(\d{1,2}:\d{1,2}:\d{1,2})$/,
           english: /^.*Location\s(\d*)-.*\D,\s(.*)$/
         }
-
         // 起始位置与标记时间部分中英文格式不同
         var cache = item.match(match.firstSplit) // ?: 为 消除对应缓存 \s+则为换行
         var thirdSection, markTime, date
@@ -304,16 +303,16 @@ export default {
         } else if (cache[3].match(match.english)) {
           thirdSection = cache[3].match(match.english)
           date = new Date(thirdSection[2])
-          markTime = date.getFullYear + '-' + date.getMonth + '-' + ' ' + date.getHours() + '-' + date.getMinutes + '-' + date.getSeconds() // 拼接时间格式
+          markTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() // 拼接时间格式
         } else {
           // 默认当前时间
           date = new Date()
-          markTime = date.getFullYear + '-' + date.getMonth + '-' + ' ' + date.getHours() + '-' + date.getMinutes + '-' + date.getSeconds()
+          markTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() // 拼接时间格式
         }
         return {
           title: cache[1],
           author: cache[2],
-          start_position: Math.floor(thirdSection[1] / 100) * 100, // 默认一个标记单位为100相同则为同一条标记
+          start_position: thirdSection[1],
           length: cache[4].length,
           mark_time: markTime, // 标记本段内容的时间
           content: cache[4]

@@ -87,19 +87,25 @@ class HomePage extends Controller
         }
         $notes = request()->notes;
         foreach ($notes as $note) { // 遍历创建mark
-            $mark = Mark::firstOrCreate([ // 如果没有就创建
-                'start_position'=>$note['start_position'],
-                'content'=>$note['content'],
-                'length'=>$note['length'],
-                'mark_time'=>$note['mark_time'],
-                'book_id'=>$book_map[$note['title']],
-                'user_id'=> $user_id,
-            ]);
+            $book_id = $book_map[$note['title']];
+            $isExists = Mark::where('user_id', $user_id)
+                ->where('book_id', $book_id)
+                ->where('start_position',$note['start_position'])
+                ->where('mark_time', $note['mark_time'])
+                ->count();
+            if(!$isExists){
+                Mark::create([ // 如果没有就创建
+                    'start_position'=>$note['start_position'],
+                    'content'=>$note['content'],
+                    'length'=>$note['length'],
+                    'mark_time'=>$note['mark_time'],
+                    'book_id'=>$book_map[$note['title']],
+                    'user_id'=> $user_id,
+                    'upload_time'=>$upload_time,
+                    'upload_id'=>$upload_id
+                ]);
+            }
         }
-        Mark::where('user_id', $user_id)->where('upload_time',0)->update([ // 统一更新upload_time
-            'upload_time'=>$upload_time,
-            'upload_id'=>$upload_id
-        ]);
     }
     public function getIsLogin(){
         // session中需含有user的id,而cookie中需要含有uuid
