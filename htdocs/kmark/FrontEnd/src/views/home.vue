@@ -127,7 +127,7 @@
 import Clipboard from 'clipboard'
 export default {
   name: 'home',
-  data () {
+  data() {
     return {
       token: window.util.cookie.get('XSRF-TOKEN'),
       isNewUser: false,
@@ -153,13 +153,13 @@ export default {
       notes: [] // 所有标记
     }
   },
-  created () {
-    this.prefix = 'http://dev.wilsonliu.cn:8000'
+  created() {
+    this.prefix = window.util.$http.defaults.baseURL
     this.getIsLogin()
     this.clipboard()
   },
   computed: {
-    afterSearch () {
+    afterSearch() {
       if (this.search === '') {
         return this.notes // 如果没有搜索，则直接返回
       }
@@ -169,7 +169,7 @@ export default {
       })
       return cache
     },
-    showBookObj () {
+    showBookObj() {
       var cache = {}
       this.afterSearch.forEach((item, index) => {
         if (index === 0) {
@@ -182,7 +182,7 @@ export default {
       })
       return cache
     },
-    uniqueBook () {
+    uniqueBook() {
       var cache = {}
       var bookArr = []
       this.notes.forEach((item, index) => {
@@ -199,7 +199,7 @@ export default {
     }
   },
   methods: {
-    readerMark (file) {
+    readerMark(file) {
       var reader = new FileReader()
       reader.readAsText(file)
       reader.onload = () => {
@@ -221,8 +221,8 @@ export default {
         })
       }
     },
-    getIsLogin () {
-      util.$http.get('home/is-login', {
+    getIsLogin() {
+      window.util.$http.get('home/is-login', {
         noLoading: true
       }).then(res => {
         if (res.data.isLogin) { // 注册过
@@ -234,7 +234,7 @@ export default {
         }
       })
     },
-    uploadError (error) {
+    uploadError(error) {
       if (error.status === 400) {
         this.$message({
           showClose: true,
@@ -243,11 +243,12 @@ export default {
         })
       }
     },
-    login () {
+    login() {
       this.$refs['userForm'].validate(isValidate => {
         if (isValidate) {
-          util.$http.post('home/login?isNewUser=' + this.isNewUser, this.user).then(res => {
+          window.util.$http.post('home/login?isNewUser=' + this.isNewUser, this.user).then(res => {
             this.dialogVisible = false
+            this.getIsLogin()
           })
         } else {
           this.$message({
@@ -258,13 +259,13 @@ export default {
         }
       })
     },
-    postNote () {
-      util.$http.post('home/upload-note', {
+    postNote() {
+      window.util.$http.post('home/upload-note', {
         notes: this.notes,
         book: this.uniqueBook
       }, { noLoading: true })
     },
-    clipboard () {
+    clipboard() {
       var clipboard = new Clipboard('.clipboard-btn')
       clipboard.on('success', (e) => {
         this.$message({
@@ -282,10 +283,10 @@ export default {
         })
       })
     },
-    changeBook (currentBook) {
+    changeBook(currentBook) {
       this.currentBook = currentBook
     },
-    cliping (txt) { // 文本解析处理
+    cliping(txt) { // 文本解析处理
       var noteArray = txt.split(/==========/g).slice(1, -1) // 根据mycliping的格式先划分成一条条记录，最后一条为空
       // debugger
       return noteArray.map((item, index) => {
@@ -304,7 +305,7 @@ export default {
         }
       })
     },
-    handleSearch () {
+    handleSearch() {
 
     }
   }

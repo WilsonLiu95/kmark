@@ -1,6 +1,6 @@
 <template>
   <div class="static-page">
-    <el-card class='card-section' v-if="user.rank">
+    <el-card class='card-section' v-if="user">
       <div slot="header"
            class="clearfix">
         <span style="line-height: 36px;">{{user.name}}，您好。 </span>
@@ -90,7 +90,7 @@
 import G2 from 'g2'
 export default {
   name: 'static',
-  data () {
+  data() {
     return {
       user: {
         rank: 0,
@@ -113,12 +113,12 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.init()
   },
   methods: {
-    init () {
-      util.$http.get('static').then(res => {
+    init() {
+      window.util.$http.get('static').then(res => {
         this.user = res.data.user
         this.mark = res.data.mark
         this.book = res.data.book
@@ -128,10 +128,10 @@ export default {
         this.thirdChart()
       })
     },
-    firstChart () {
+    firstChart() {
       var chart = new G2.Chart({
         id: 'userChart',
-        width: 600,
+        forceFit: true,
         height: 300
       })
 
@@ -147,11 +147,10 @@ export default {
       // Step 4: 渲染图表
       chart.render()
     },
-    secondChart () {
+    secondChart() {
       var chart = new G2.Chart({
         id: 'uploadChart',
         forceFit: true,
-        width: 600,
         height: 300
       })
       chart.source(this.chart.upload, {
@@ -165,11 +164,10 @@ export default {
       chart.interval().position('month*number').size(15)
       chart.render()
     },
-    thirdChart () {
+    thirdChart() {
       var chart = new G2.Chart({
         id: 'markChart',
         forceFit: true,
-        width: 600,
         height: 300
       })
       chart.source(this.chart.mark, {

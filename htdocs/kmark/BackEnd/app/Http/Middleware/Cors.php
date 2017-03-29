@@ -14,10 +14,10 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        header('Access-Control-Allow-Headers: Content-Type,Accept');
-        header('Access-Control-Allow-Credentials:true');
+        header('Access-Control-Allow-Headers: *');
+        header('Access-Control-Allow-Credentials: true');
         header('Access-Control-Allow-Origin: http://localhost:8080' );
-        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, HEAD');
+        header('Access-Control-Allow-Methods: *');
 
         return $next($request);
 
