@@ -94,11 +94,11 @@ class HomePage extends Controller
                 'mark_time'=>$note['mark_time'],
                 'book_id'=>$book_map[$note['title']],
                 'user_id'=> $user_id,
-                'upload_id'=>$upload_id,
             ]);
         }
         Mark::where('user_id', $user_id)->where('upload_time',0)->update([ // 统一更新upload_time
-            'upload_time'=>$upload_time
+            'upload_time'=>$upload_time,
+            'upload_id'=>$upload_id
         ]);
     }
     public function getIsLogin(){
