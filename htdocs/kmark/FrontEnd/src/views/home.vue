@@ -28,8 +28,8 @@
                class="clearfix box-card-header">
             <span style="float:left"
                   v-if='isLogin && user.name'>
-                    {{user.name + ', 你好'}}
-            </span>
+                          {{user.name + ', 你好'}}
+                  </span>
             <span v-if="currentBook"
                   style="font-size:20px;">{{currentBook}}</span>
             <span v-if="showBookObj[currentBook]"
@@ -75,7 +75,7 @@
   
           <div class="book-frag-list">
             <ul v-if="showBookObj[currentBook]">
-              <li  v-for='(mark, index) in showBookObj[currentBook]'>
+              <li v-for='(mark, index) in showBookObj[currentBook]'>
                 {{mark.content}}
               </li>
             </ul>
@@ -114,9 +114,9 @@
         </el-form>
         <span slot="footer"
               class="dialog-footer">
-          <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="login">确 定</el-button>
-        </span>
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="login">确 定</el-button>
+              </span>
       </el-dialog>
     </el-row>
   
@@ -291,7 +291,7 @@ export default {
       return noteArray.map((item, index) => {
         const match = {
           firstSplit: /^(.*) \((.*)\)(?:\s)-(.*)(?:\s+)(.*)$/m, // 将每一块细分为书名，作者，(起始位置，标记时间)，内容 4部分
-          chinese: /^.*#(\d+)-.*(\d{4})年(\d{1,2})月(\d{1,2})日(?:.*\D)(\d{1,2}:\d{1,2}:\d{1,2})$/,
+          chinese: /^.*#(\d+)\D*.*(\d{4})年(\d{1,2})月(\d{1,2})日(?:.*\D)(\d{1,2}:\d{1,2}:\d{1,2})$/,
           english: /^.*Location\s(\d*)-.*\D,\s(.*)$/
         }
         // 起始位置与标记时间部分中英文格式不同
@@ -309,10 +309,11 @@ export default {
           date = new Date()
           markTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() // 拼接时间格式
         }
+
         return {
           title: cache[1],
           author: cache[2],
-          start_position: thirdSection[1],
+          start_position: thirdSection ? thirdSection[1] : 0,
           length: cache[4].length,
           mark_time: markTime, // 标记本段内容的时间
           content: cache[4]
@@ -357,7 +358,7 @@ export default {
 .book-item-btn {
   display: block;
   margin: 0 0 1px 0;
-  white-space:normal;
+  white-space: normal;
   background-color: #EAEAEA;
   width: 100%;
 }
