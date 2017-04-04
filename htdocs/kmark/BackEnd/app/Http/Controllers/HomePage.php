@@ -85,6 +85,7 @@ class HomePage extends Controller
             }
             $book_map[$book['title']] = $db_book->id;
         }
+
         $notes = request()->notes;
         foreach ($notes as $note) { // 遍历创建mark
             $book_id = $book_map[$note['title']];
@@ -94,7 +95,7 @@ class HomePage extends Controller
                 ->where('mark_time', $note['mark_time'])
                 ->count();
             if(!$isExists){
-                Mark::create([ // 如果没有就创建
+                $newOne = [ // 如果没有就创建
                     'start_position'=>$note['start_position'],
                     'content'=>$note['content'],
                     'length'=>$note['length'],
@@ -103,7 +104,8 @@ class HomePage extends Controller
                     'user_id'=> $user_id,
                     'upload_time'=>$upload_time,
                     'upload_id'=>$upload_id
-                ]);
+                ];
+                Mark::insert($newOne);
             }
         }
     }

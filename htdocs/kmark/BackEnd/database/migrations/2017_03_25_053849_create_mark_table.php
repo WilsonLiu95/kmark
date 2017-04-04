@@ -24,8 +24,7 @@ class CreateMarkTable extends Migration
             $table->string('length')->comment('标记的长度,即包含多少字');
             $table->dateTime('mark_time')
                 ->comment('标记产生的时间。 2017-03-26 03:59:32');
-            $table->string('content')->comment('标记的内容');
-
+            $table->text('content')->comment('标记的内容');
             $table->softDeletes();
             $table->timestamps();
         });

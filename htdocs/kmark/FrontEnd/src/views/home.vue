@@ -28,8 +28,8 @@
                class="clearfix box-card-header">
             <span style="float:left"
                   v-if='isLogin && user.name'>
-                          {{user.name + ', 你好'}}
-                  </span>
+                              {{user.name + ', 你好'}}
+                      </span>
             <span v-if="currentBook"
                   style="font-size:20px;">{{currentBook}}</span>
             <span v-if="showBookObj[currentBook]"
@@ -114,9 +114,9 @@
         </el-form>
         <span slot="footer"
               class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="login">确 定</el-button>
-              </span>
+                    <el-button @click="dialogVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="login">确 定</el-button>
+                  </span>
       </el-dialog>
     </el-row>
   
@@ -296,6 +296,16 @@ export default {
         }
         // 起始位置与标记时间部分中英文格式不同
         var cache = item.match(match.firstSplit) // ?: 为 消除对应缓存 \s+则为换行
+        if (!cache) { // 如果没有匹配出来，则进行处理
+          return {
+            title: '识别出错',
+            author: '错误',
+            start_position: 0,
+            length: 0,
+            mark_time: '2017-1-1 0:0:0', // 标记本段内容的时间
+            content: item
+          }
+        }
         var thirdSection, markTime, date
         if (cache[3].match(match.chinese)) {
           thirdSection = cache[3].match(match.chinese)
@@ -309,7 +319,6 @@ export default {
           date = new Date()
           markTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() // 拼接时间格式
         }
-
         return {
           title: cache[1],
           author: cache[2],
