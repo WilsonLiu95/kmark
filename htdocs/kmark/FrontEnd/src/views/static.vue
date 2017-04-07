@@ -67,18 +67,18 @@
       <el-row style="text-align:center">
         <el-col :span="7"
                 :offset="1">
-          <span>每月新增用户</span>
-          <div id="userChart"></div>
+          <div class="static-chart"
+               id="user-chart"></div>
         </el-col>
         <el-col :span="7"
                 :offset="1">
-          <span>每月上传次数</span>
-          <div id="uploadChart"></div>
+          <div class="static-chart"
+               id="upload-chart"></div>
         </el-col>
         <el-col :span="7"
                 :offset="1">
-          <span>每月新增标记</span>
-          <div id="markChart"></div>
+          <div class="static-chart"
+               id="mark-chart"></div>
         </el-col>
       </el-row>
   
@@ -88,7 +88,10 @@
 </template>
 
 <script>
-import G2 from 'g2'
+import echarts from 'echarts/lib/echarts'
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/title'
+import 'echarts/lib/component/tooltip'
 import Vue from 'vue'
 import { Table, TableColumn, Row, Col } from 'element-ui'
 Vue.use(Table)
@@ -131,63 +134,33 @@ export default {
         this.mark = res.data.mark
         this.book = res.data.book
         this.chart = res.data.chart
-        this.firstChart()
-        this.secondChart()
-        this.thirdChart()
+        Object.entries(this.chart).forEach((item) => {
+          const titleMap = {
+            'user': '每月用户增长',
+            'mark': '每月标记',
+            'upload': '每月上传次数'
+          }
+          this.makeChart(item[0], titleMap[item[0]], item[1])
+        })
       })
     },
-    firstChart() {
-      var chart = new G2.Chart({
-        id: 'userChart',
-        forceFit: true,
-        height: 300
-      })
-
-      chart.source(this.chart.user, {
-        month: {
-          alias: '月份' // 列定义，定义该属性显示的别名
+    makeChart(tableId, title, data) {
+      var myChart = echarts.init(document.getElementById(tableId + '-chart'))
+      // 绘制图表
+      myChart.setOption({
+        title: { text: title },
+        color: ['#3398DB'],
+        tooltip: {},
+        xAxis: {
+          data: Object.keys(data)
         },
-        number: {
-          alias: '注册人数'
-        }
+        yAxis: {},
+        series: [{
+          name: '数量',
+          type: 'bar',
+          data: Object.values(data)
+        }]
       })
-      chart.interval().position('month*number').size(15)
-      // Step 4: 渲染图表
-      chart.render()
-    },
-    secondChart() {
-      var chart = new G2.Chart({
-        id: 'uploadChart',
-        forceFit: true,
-        height: 300
-      })
-      chart.source(this.chart.upload, {
-        month: {
-          alias: '月份'
-        },
-        number: {
-          alias: '上传次数'
-        }
-      })
-      chart.interval().position('month*number').size(15)
-      chart.render()
-    },
-    thirdChart() {
-      var chart = new G2.Chart({
-        id: 'markChart',
-        forceFit: true,
-        height: 300
-      })
-      chart.source(this.chart.mark, {
-        month: {
-          alias: '月份'
-        },
-        number: {
-          alias: '新增标记数'
-        }
-      })
-      chart.interval().position('month*number').size(15)
-      chart.render()
     }
   }
 }
@@ -197,5 +170,10 @@ export default {
 <style scoped>
 .card-section {
   margin-bottom: 20px;
+}
+
+.static-chart {
+  width: 100%;
+  height: 400px;
 }
 </style>

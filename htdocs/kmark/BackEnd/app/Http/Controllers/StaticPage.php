@@ -88,19 +88,19 @@ class StaticPage extends Controller
             $start_time = Carbon::now()->subMonths($i + 1)->endOfMonth();
             $end_time = Carbon::now()->subMonths($i)->endOfMonth();
             if ($modelClass === Upload::class) {
-                array_unshift($chart, [
-                    'month' => Carbon::now()->subMonths($i)->format('Y/m'),
-                    'number' => (int)app($modelClass)->where('created_at', '<', $end_time)
+                $chart[Carbon::now()->subMonths($i)->format('Y/m')]= 
+                
+                     (int)app($modelClass)->where('created_at', '<', $end_time)
                         ->where('created_at', '>', $start_time)
                         ->sum('upload_time')
-                ]);
+                ;
             } else {
-                array_unshift($chart, [
-                    'month' => Carbon::now()->subMonths($i)->format('Y/m'),
-                    'number' => app($modelClass)->where('created_at', '<', $end_time)
+                $chart[Carbon::now()->subMonths($i)->format('Y/m')]
+                    
+                     = app($modelClass)->where('created_at', '<', $end_time)
                         ->where('created_at', '>', $start_time)
                         ->count()
-                ]);
+                ;
             }
 
         }

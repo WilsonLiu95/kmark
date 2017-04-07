@@ -105,7 +105,7 @@ class HomePage extends Controller
                     'upload_time'=>$upload_time,
                     'upload_id'=>$upload_id
                 ];
-                Mark::insert($newOne);
+                Mark::create($newOne);
             }
         }
     }
