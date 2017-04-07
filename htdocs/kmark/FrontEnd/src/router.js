@@ -2,6 +2,7 @@ export default {
   routes: [
     {
       path: '/',
+      meta: '首页',
       redirect: '/home'
     },
     {
@@ -31,6 +32,15 @@ export default {
       component: resolve => {
         require.ensure([], (require) => {
           resolve(require('./views/about.vue'))
+        })
+      }
+    },
+    {
+      path: '*',
+      meta: '404',
+      component: resolve => {
+        require.ensure([], (require) => {
+          resolve(require('./views/404.vue'))
         })
       }
     }

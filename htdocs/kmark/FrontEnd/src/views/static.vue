@@ -1,6 +1,7 @@
 <template>
   <div class="static-page">
-    <el-card class='card-section' v-if="user">
+    <el-card class='card-section'
+             v-if="user">
       <div slot="header"
            class="clearfix">
         <span style="line-height: 36px;">{{user.name}}，您好。 </span>
@@ -66,12 +67,12 @@
       <el-row style="text-align:center">
         <el-col :span="7"
                 :offset="1">
-                <span>每月新增用户</span>
+          <span>每月新增用户</span>
           <div id="userChart"></div>
         </el-col>
         <el-col :span="7"
                 :offset="1">
-                <span>每月上传次数</span>
+          <span>每月上传次数</span>
           <div id="uploadChart"></div>
         </el-col>
         <el-col :span="7"
@@ -88,6 +89,13 @@
 
 <script>
 import G2 from 'g2'
+import Vue from 'vue'
+import { Table, TableColumn, Row, Col } from 'element-ui'
+Vue.use(Table)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(TableColumn)
+
 export default {
   name: 'static',
   data() {

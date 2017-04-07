@@ -5,7 +5,7 @@ import App from './App'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import 'element-ui/lib/theme-default/index.css'
-import ElementUI, { Message, Loading } from 'element-ui'
+import { Message, Loading } from 'element-ui'
 
 import routerConfig from './router'
 import config from '../config'
@@ -18,8 +18,10 @@ window.util = {
 }
 var router = new VueRouter(routerConfig)
 Vue.use(VueRouter)
-Vue.use(ElementUI)
 
+//  Element-UI
+Vue.prototype.$message = Message
+Vue.prototype.$loading = Loading.service
 // ======================配置HTTP请求===============================
 var loading
   // Add a request interceptor

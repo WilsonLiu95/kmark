@@ -26,7 +26,7 @@
            class="clearfix breadcrumb-header">
         <el-breadcrumb separator=">">
           <el-breadcrumb-item class="iconfont icon-home breadcrumb-kmark">Kmark</el-breadcrumb-item>
-          <el-breadcrumb-item>{{$route.matched[0].meta}}</el-breadcrumb-item>
+          <el-breadcrumb-item>{{$route.matched[0]? $route.matched[0].meta: ''}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <router-view class="main-content">
@@ -38,6 +38,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import { Card, Menu, MenuItem, Breadcrumb, BreadcrumbItem } from 'element-ui'
+Vue.use(Menu)
+Vue.use(Card)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(MenuItem)
 export default {
   name: 'app',
   data() {

@@ -6,8 +6,7 @@
           <el-input placeholder="可输入单个关键词搜索标记"
                     class="search"
                     icon="search"
-                    v-model="search"
-                    :on-icon-click="handleSearch">
+                    v-model="search">
           </el-input>
           <!--书籍列表-->
           <el-button-group class='book-btn-group'>
@@ -28,8 +27,8 @@
                class="clearfix box-card-header">
             <span style="float:left"
                   v-if='isLogin && user.name'>
-                              {{user.name + ', 你好'}}
-                      </span>
+                        {{user.name + ', 你好'}}
+                </span>
             <span v-if="currentBook"
                   style="font-size:20px;">{{currentBook}}</span>
             <span v-if="showBookObj[currentBook]"
@@ -114,9 +113,9 @@
         </el-form>
         <span slot="footer"
               class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="login">确 定</el-button>
-                  </span>
+              <el-button @click="dialogVisible = false">取 消</el-button>
+              <el-button type="primary" @click="login">确 定</el-button>
+            </span>
       </el-dialog>
     </el-row>
   
@@ -125,6 +124,20 @@
 
 <script>
 import Clipboard from 'clipboard'
+import Vue from 'vue'
+import { Row, Col, RadioGroup, Input, Form, Upload, Button, ButtonGroup, FormItem, Radio, Dialog, Tooltip } from 'element-ui'
+Vue.use(Tooltip)
+Vue.use(RadioGroup)
+Vue.use(Form)
+Vue.use(Dialog)
+Vue.use(Button)
+Vue.use(Upload)
+Vue.use(ButtonGroup)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Input)
+Vue.use(FormItem)
+Vue.use(Radio)
 export default {
   name: 'home',
   data() {
@@ -328,9 +341,6 @@ export default {
           content: cache[4]
         }
       })
-    },
-    handleSearch() {
-
     }
   }
 }
@@ -364,7 +374,7 @@ export default {
   margin: 10px 0 0 0;
 }
 
-.book-item-btn {
+.home-page .book-item-btn {
   display: block;
   margin: 0 0 1px 0;
   white-space: normal;
@@ -382,7 +392,7 @@ export default {
 }
 
 
-.clipboard-btn {
+.home-page .clipboard-btn {
   background-color: #D7000E;
   float: right;
   margin: -6px 30px 0 0;
