@@ -27,8 +27,8 @@
                class="clearfix box-card-header">
             <span style="float:left"
                   v-if='isLogin && user.name'>
-                        {{user.name + ', 你好'}}
-                </span>
+                                    {{user.name + ', 你好'}}
+                            </span>
             <span v-if="currentBook"
                   style="font-size:20px;">{{currentBook}}</span>
             <span v-if="showBookObj[currentBook]"
@@ -113,9 +113,9 @@
         </el-form>
         <span slot="footer"
               class="dialog-footer">
-              <el-button @click="dialogVisible = false">取 消</el-button>
-              <el-button type="primary" @click="login">确 定</el-button>
-            </span>
+                          <el-button @click="dialogVisible = false">取 消</el-button>
+                          <el-button type="primary" @click="login">确 定</el-button>
+                        </span>
       </el-dialog>
     </el-row>
   
@@ -188,7 +188,7 @@ export default {
         if (index === 0) {
           this.currentBook = item.title
         }
-        if (!cache[item.title]) {
+        if (!cache[item.title.toString()]) {
           cache[item.title] = [] // 初始化为数组
         }
         cache[item.title].push(item)
@@ -300,8 +300,8 @@ export default {
       this.currentBook = currentBook
     },
     cliping(txt) { // 文本解析处理
-      var noteArray = txt.split(/==========/g).slice(0, -1) // 根据mycliping的格式先划分成一条条记录，最后一条为空
-      return noteArray.map((item, index) => {
+      let noteAfterSplit = txt.split(/==========/g).slice(0, -1) // 根据mycliping的格式先划分成一条条记录，最后一条为空
+      let noteAfterReg = noteAfterSplit.map((item, index) => {
         const match = {
           firstSplit: /^(.*) \((.*)\)(?:\s)-(.*)(?:\s+)(.*)$/m, // 将每一块细分为书名，作者，(起始位置，标记时间)，内容 4部分
           chinese: /^.*#(\d+)\D*.*(\d{4})年(\d{1,2})月(\d{1,2})日(?:.*\D)(\d{1,2}:\d{1,2}:\d{1,2})$/,
@@ -319,6 +319,9 @@ export default {
             content: item
           }
         }
+        if (!cache[4]) { // 内容为空,则直接返回空值，等待filter
+          return null
+        }
         var thirdSection, markTime, date
         if (cache[3].match(match.chinese)) {
           thirdSection = cache[3].match(match.chinese)
@@ -333,14 +336,21 @@ export default {
           markTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() // 拼接时间格式
         }
         return {
-          title: cache[1],
-          author: cache[2],
+          title: cache[1].trim(),
+          author: cache[2].trim(),
           start_position: thirdSection ? thirdSection[1] : 0,
           length: cache[4].length,
           mark_time: markTime, // 标记本段内容的时间
-          content: cache[4]
+          content: cache[4].trim()
         }
       })
+      let noteAfterFilter = noteAfterReg.filter((item, index) => { // 去除 空的标记
+        if (item == null) {
+          return false
+        }
+        return true
+      })
+      return noteAfterFilter
     }
   }
 }

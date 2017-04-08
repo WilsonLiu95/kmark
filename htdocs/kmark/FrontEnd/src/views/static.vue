@@ -88,10 +88,6 @@
 </template>
 
 <script>
-import echarts from 'echarts/lib/echarts'
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/component/title'
-import 'echarts/lib/component/tooltip'
 import Vue from 'vue'
 import { Table, TableColumn, Row, Col } from 'element-ui'
 Vue.use(Table)
@@ -99,6 +95,12 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(TableColumn)
 
+require.ensure([], (require) => { // 将echart分离出去
+  Vue.prototype.$echarts = require('echarts/lib/echarts')
+  require('echarts/lib/chart/bar')
+  require('echarts/lib/component/title')
+  require('echarts/lib/component/tooltip')
+})
 export default {
   name: 'static',
   data() {
@@ -145,20 +147,20 @@ export default {
       })
     },
     makeChart(tableId, title, data) {
-      var myChart = echarts.init(document.getElementById(tableId + '-chart'))
+      var myChart = this.$echarts.init(document.getElementById(tableId + '-chart'))
       // 绘制图表
       myChart.setOption({
         title: { text: title },
         color: ['#3398DB'],
         tooltip: {},
         xAxis: {
-          data: Object.keys(data)
+          data: Object.keys(data).reverse()
         },
         yAxis: {},
         series: [{
           name: '数量',
           type: 'bar',
-          data: Object.values(data)
+          data: Object.values(data).reverse()
         }]
       })
     }

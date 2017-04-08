@@ -4,7 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
 import axios from 'axios'
-import 'element-ui/lib/theme-default/index.css'
 import { Message, Loading } from 'element-ui'
 
 import routerConfig from './router'

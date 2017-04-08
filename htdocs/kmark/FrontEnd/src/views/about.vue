@@ -27,7 +27,9 @@
               <span>开发:WilsonLiu95</span>
             </div>
             <div>
-              <img :src="assets.xinyao" width="200px" height="200px">
+              <img :src="assets.xinyao"
+                   width="200px"
+                   height="200px">
               <span>致谢设计师 | 王欣瑶</span>
             </div>
           </el-card>
@@ -41,13 +43,17 @@
 </template>
 
 <script>
-
+import wilsonliu from 'assets/WilsonLiu95.jpeg'
+import Vue from 'vue'
+import { Row, Col } from 'element-ui'
+Vue.use(Row)
+Vue.use(Col)
 export default {
   name: 'about',
   data() {
     return {
       assets: {
-        wilsonliu: require('assets/WilsonLiu95.jpeg'),
+        wilsonliu: wilsonliu,
         xinyao: require('assets/xinyao.jpeg')
       }
     }
