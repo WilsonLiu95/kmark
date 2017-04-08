@@ -1,4 +1,3 @@
-import Vue from 'vue'
 export default {
   routes: [
     {
@@ -22,10 +21,6 @@ export default {
       path: '/static',
       component: resolve => {
         require.ensure([], (require) => {
-          Vue.prototype.$echarts = require('echarts/lib/echarts')
-          require('echarts/lib/chart/bar')
-          require('echarts/lib/component/title')
-          require('echarts/lib/component/tooltip')
           resolve(require('./views/static.vue'))
         })
       }

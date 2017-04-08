@@ -94,8 +94,6 @@ Vue.use(Table)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(TableColumn)
-
-
 export default {
   name: 'static',
   data() {
@@ -131,13 +129,19 @@ export default {
         this.mark = res.data.mark
         this.book = res.data.book
         this.chart = res.data.chart
-        Object.entries(this.chart).forEach((item) => {
-          const titleMap = {
-            'user': '每月用户增长',
-            'mark': '每月标记',
-            'upload': '每月上传次数'
-          }
-          this.makeChart(item[0], titleMap[item[0]], item[1])
+        require.ensure([], (require) => { // 异步加载echarts 再进行渲染
+          Vue.prototype.$echarts = require('echarts/lib/echarts')
+          require('echarts/lib/chart/bar')
+          require('echarts/lib/component/title')
+          require('echarts/lib/component/tooltip')
+          Object.entries(this.chart).forEach((item) => {
+            const titleMap = {
+              'user': '每月用户增长',
+              'mark': '每月标记',
+              'upload': '每月上传次数'
+            }
+            this.makeChart(item[0], titleMap[item[0]], item[1])
+          })
         })
       })
     },
