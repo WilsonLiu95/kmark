@@ -95,12 +95,7 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(TableColumn)
 
-require.ensure([], (require) => { // 将echart分离出去
-  Vue.prototype.$echarts = require('echarts/lib/echarts')
-  require('echarts/lib/chart/bar')
-  require('echarts/lib/component/title')
-  require('echarts/lib/component/tooltip')
-})
+
 export default {
   name: 'static',
   data() {
