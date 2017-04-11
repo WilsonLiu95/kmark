@@ -303,7 +303,7 @@ export default {
       let noteAfterSplit = txt.split(/==========/g).slice(0, -1) // 根据mycliping的格式先划分成一条条记录，最后一条为空
       let noteAfterReg = noteAfterSplit.map((item, index) => {
         const match = {
-          firstSplit: /^(.*) \((.*)\)(?:\s)-(.*)(?:\s+)(.*)$/m, // 将每一块细分为书名，作者，(起始位置，标记时间)，内容 4部分
+          firstSplit: /^(.*) \((.*)\)(?:\s+)-(.*)(?:\s+)(.*)$/m, // 将每一块细分为书名，作者，(起始位置，标记时间)，内容 4部分
           chinese: /^.*#(\d+)\D*.*(\d{4})年(\d{1,2})月(\d{1,2})日(?:.*\D)(\d{1,2}:\d{1,2}:\d{1,2})$/,
           english: /^.*Location\s(\d*)-.*\D,\s(.*)$/
         }
