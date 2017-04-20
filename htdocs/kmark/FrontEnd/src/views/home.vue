@@ -304,7 +304,7 @@ export default {
       let noteAfterReg = noteAfterSplit.map((item, index) => {
         const match = {
           firstSplit: /^(.*) \((.*)\)(?:\s+)-(.*)(?:\s+)(.*)$/m, // 将每一块细分为书名，作者，(起始位置，标记时间)，内容 4部分
-          chinese: /^.*#(\d+)\D*.*(\d{4})年(\d{1,2})月(\d{1,2})日(?:.*\D)(\d{1,2}:\d{1,2}:\d{1,2})$/,
+          chinese: /^.*#(\d+)\D*.*(\d{4})年(\d{1,2})月(\d{1,2})日.*(上午|下午)(\d{1,2}:\d{1,2}:\d{1,2})$/,
           english: /^.*Location\s(\d*)-.*\D,\s(.*)$/
         }
         // 起始位置与标记时间部分中英文格式不同
@@ -315,7 +315,7 @@ export default {
             author: '错误',
             start_position: 0,
             length: 0,
-            mark_time: '2017-1-1 0:0:0', // 标记本段内容的时间
+            mark_time: '1995-01-17 00:00:00', // 标记本段内容的时间
             content: item
           }
         }
@@ -323,16 +323,17 @@ export default {
           return null
         }
         var thirdSection, markTime, date
-        if (cache[3].match(match.chinese)) {
+        if (cache[3].match(match.chinese)) { // 忘记考虑上午下午的问题，12与24小时进制的转换
           thirdSection = cache[3].match(match.chinese)
-          markTime = thirdSection.slice(2, 5).join('-') + ' ' + thirdSection[5]
+          const transformTime = thirdSection[5] === '下午' ? (thirdSection[6] + 12) : thirdSection[6]
+          markTime = thirdSection.slice(2, 5).join('-') + ' ' + transformTime
         } else if (cache[3].match(match.english)) {
           thirdSection = cache[3].match(match.english)
-          date = new Date(thirdSection[2])
+          date = new Date(thirdSection[2]) // 将匹配到 February 21, 2017 1:11:53 AM
           markTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() // 拼接时间格式
         } else {
-          // 默认当前时间
-          date = new Date()
+          // 如果时间匹配错误，默认为我的生日
+          date = new Date('1995-01-17')
           markTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() // 拼接时间格式
         }
         return {
