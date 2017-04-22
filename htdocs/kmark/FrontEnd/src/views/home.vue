@@ -315,7 +315,6 @@ export default {
         }
         // 起始位置与标记时间部分中英文格式不同
         var cache = item.match(matchReg.firstSplit) // ?: 为 消除对应缓存 \s+则为换行
-        debugger
         if (!cache) { // 如果没有匹配出来，则进行处理
           return {
             title: '识别出错',
