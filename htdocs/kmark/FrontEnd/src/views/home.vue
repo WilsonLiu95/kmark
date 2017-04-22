@@ -302,13 +302,20 @@ export default {
     cliping(txt) { // 文本解析处理
       let noteAfterSplit = txt.split(/==========/g).slice(0, -1) // 根据mycliping的格式先划分成一条条记录，最后一条为空
       let noteAfterReg = noteAfterSplit.map((item, index) => {
-        const match = {
-          firstSplit: /^(.*) \((.*)\)(?:\s+)-(.*)(?:\s+)(.*)$/m, // 将每一块细分为书名，作者，(起始位置，标记时间)，内容 4部分
-          chinese: /^.*#(\d+)\D*.*(\d{4})年(\d{1,2})月(\d{1,2})日.*(上午|下午)(\d{1,2}:\d{1,2}:\d{1,2})$/,
+        const matchReg = {
+          /*
+            特例:哈利波特原版（全集） (J·K·罗琳 (J.K.Rowling))   作者中嵌套() 且中间带上空格了
+            ([^ ]*) \((.*)\) 这部分用来匹配书名与作者，遇到第一个空格即停下书名 再匹配作者
+            (?:\s+)-(.*)(?:\s+) 这部分用来匹配中间一段的信息
+            (.*) 最后则是对内容进行匹配
+          */
+          firstSplit: /^([^ ]*) \((.*)\)(?:\s+)-(.*)(?:\s+)(.*)$/m, // 将每一块细分为书名，作者，(起始位置，标记时间)，内容4部分
+          chinese: /^(?:.*)#(\d+)\D*.*(\d{4})年(\d{1,2})月(\d{1,2})日.*(上午|下午)(\d{1,2}:\d{1,2}:\d{1,2})$/,
           english: /^.*Location\s(\d*)-.*\D,\s(.*)$/
         }
         // 起始位置与标记时间部分中英文格式不同
-        var cache = item.match(match.firstSplit) // ?: 为 消除对应缓存 \s+则为换行
+        var cache = item.match(matchReg.firstSplit) // ?: 为 消除对应缓存 \s+则为换行
+        debugger
         if (!cache) { // 如果没有匹配出来，则进行处理
           return {
             title: '识别出错',
@@ -323,12 +330,12 @@ export default {
           return null
         }
         var thirdSection, markTime, date
-        if (cache[3].match(match.chinese)) { // 忘记考虑上午下午的问题，12与24小时进制的转换
-          thirdSection = cache[3].match(match.chinese)
+        if (cache[3].match(matchReg.chinese)) { // 忘记考虑上午下午的问题，12与24小时进制的转换
+          thirdSection = cache[3].match(matchReg.chinese)
           const transformTime = thirdSection[5] === '下午' ? (thirdSection[6] + 12) : thirdSection[6]
           markTime = thirdSection.slice(2, 5).join('-') + ' ' + transformTime
-        } else if (cache[3].match(match.english)) {
-          thirdSection = cache[3].match(match.english)
+        } else if (cache[3].match(matchReg.english)) {
+          thirdSection = cache[3].match(matchReg.english)
           date = new Date(thirdSection[2]) // 将匹配到 February 21, 2017 1:11:53 AM
           markTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() // 拼接时间格式
         } else {
