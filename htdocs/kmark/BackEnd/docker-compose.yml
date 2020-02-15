@@ -1,0 +1,41 @@
+version: "3"
+
+networks:
+  kmark_default:
+    external: true
+volumes:
+  mysqlstorage:
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    command: php artisan serve --host=0.0.0.0 --port=80
+    networks:
+      - kmark_default
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=mysql"
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    ports:
+      - "80:80"
+  mysql:
+    image: 'mysql:5.7'
+    env_file: 
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+    restart: always
+    networks:
+      - kmark_default
+    volumes:
+      - ./storage/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"

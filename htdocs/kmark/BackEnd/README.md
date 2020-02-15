@@ -25,3 +25,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+
+docker run -it -p 127.0.0.1:8000:8000 -v ~/workspace/kmark/htdocs/kmark/BackEnd:/var/www  -d --name Laravel centos:7
