@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.19.2",
     "clipboard": "^1.6.1",
     "echarts": "^3.5.2",
     "element-ui": "^1.2.4",
