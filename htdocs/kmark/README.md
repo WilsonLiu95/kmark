@@ -8,3 +8,8 @@
 |2017-4-8   | WilsonLiu95   | 标记为空白未去除，同一书名当多本书   | 利用filter去空白标记，利用trim简单处理单本书被当成多本书  |
 |2017-4-11   | WilsonLiu95   | 用户上传的标记都解析错误   | 定位，`/^(.*) \((.*)\)(?:\s+)-(.*)(?:\s+)(.*)$/m`,正则在`(?:s)`改为`(?:s)+`  |
 |2017-4-22   | 小学弟   | 特例:哈利波特原版（全集） (J·K·罗琳 (J.K.Rowling))   作者中嵌套() 且中间带上空格了   | 修改正则  |   
+
+# 部署
+1. php artisan key:generate 生成秘钥
+2. 必须环境变量![image](https://user-images.githubusercontent.com/13747057/149648304-7c7e7be5-1583-43dd-a9b8-3d3d8317927d.png)
+3. 镜像地址 ccr.ccs.tencentyun.com/wilsonsliu/kmark:1.0
